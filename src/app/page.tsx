@@ -5,8 +5,9 @@ import Card2 from "./components/BaseComponents/card2/Card2";
 import Card3 from "./components/BaseComponents/card3/Card3";
 import Card4 from "./components/BaseComponents/card4/Card4";
 import Question from "./components/BaseComponents/QuestionCard/Question";
-import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
+import Footer from "./components/OneTimeComponents/Footer";
+import Header from "./components/OneTimeComponents/Header";
+import HeroSection from "./components/OneTimeComponents/HeroSection";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <Card3 />
         <Card4 />
         <Question />
+        <Footer />
       </div>
     </div>
   );

@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function Header() {
+  const pathName = usePathname();
   const [Language, setLanguage] = useState("KR");
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "KR" ? "EN" : "KR"));
@@ -12,8 +14,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "개발 외주", href: "/outsourcing" },
-    { name: "요금 정책", href: "/fee" },
+    { name: "개발 외주", href: "/" },
+    { name: "요금 정책", href: "/price" },
     { name: "서비스 소개서", href: "/letter" },
     { name: "외주 꿀팁", href: "/tips" },
   ];
@@ -38,7 +40,9 @@ export default function Header() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="hover:text-[#FF7B00] transition-colors text-[1.25rem] font-semibold"
+                  className={` ${
+                    item.href === pathName ? "text-primary" : "text-white"
+                  } hover:text-[#FF7B00] transition-colors text-[1.25rem] font-semibold`}
                 >
                   {item.name}
                 </a>
@@ -105,11 +109,13 @@ export default function Header() {
       {isMenuOpen && (
         <div className="fixed inset-0 bg-[#09090B] z-40 xl:hidden mt-20 pt-20 flex flex-col items-center space-y-[5rem]">
           <nav className="flex flex-col space-y-[5rem] text-white">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <a
-                key={item.name}
+                key={index}
                 href={item.href}
-                className="text-lg hover:text-orange-400 transition-colors"
+                className={` ${
+                  item.href === pathName ? "text-primary" : "text-white"
+                }text-lg hover:text-primary transition-colors`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}

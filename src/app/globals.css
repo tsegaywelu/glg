@@ -10,8 +10,8 @@
   --color-foreground: var(--foreground);
   --color-primary: #ff7b00;
   --color-foreground-strong: #09090b;
+  --font-sans: "Pretendard", ui-sans-serif, system-ui, sans-serif;
 
-  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -123,6 +123,6 @@ body {
 /* Smaller laptops / tablets (1024–1279px) */
 @media (max-width: 1279px) {
   html {
-    font-size: 10px;
+    font-size: 16px;
   }
 }

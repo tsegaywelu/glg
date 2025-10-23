@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ImageCard from "./BaseComponents/ImageCard";
+import ImageCard from "../BaseComponents/ImageCard";
 import Image from "next/image";
 
 export default function HeroSection() {
