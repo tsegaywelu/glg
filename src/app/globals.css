@@ -8,6 +8,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: #ff7b00;
+  --color-foreground-strong: #09090b;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -81,11 +84,45 @@ body {
 }
 
 .dotted-bg-simple {
-  background-image: radial-gradient(circle, #c3e8f1 0.1324rem, transparent 1px),
-    radial-gradient(circle, #ca5ea3 0.1324rem, transparent 1px);
-  background-size: 30px 30px, 20px 20px;
-  background-position: 0 0, 15px 15px;
-  min-height: 400px;
+  background-image: url("/images/HeroBackground1.png");
+  background-size: cover; /* Makes the image cover the whole area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
 }
 
-/* HeroBackground */
+/* for responsive design */
+
+/* ≥ 1920px (Full HD / 1080p, 2K, etc.) */
+@media (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* 1680px wide (1680×1050) */
+@media (max-width: 1919px) and (min-width: 1680px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* 1440px wide (1440×900, common MacBook Pro, laptops) */
+@media (max-width: 1679px) and (min-width: 1440px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* 1366px wide (1366×768, very common laptops) */
+@media (max-width: 1439px) and (min-width: 1280px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Smaller laptops / tablets (1024–1279px) */
+@media (max-width: 1279px) {
+  html {
+    font-size: 10px;
+  }
+}

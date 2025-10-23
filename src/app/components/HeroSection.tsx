@@ -1,63 +1,68 @@
 import Link from "next/link";
 import ImageCard from "./BaseComponents/ImageCard";
+import Image from "next/image";
 
 export default function HeroSection() {
   const Imagelogs = [
     {
-      src: "/images/companyLogos/Logo1.png",
-      alt: "Image 1",
-      link: "https://example.com/image1",
-      width: 100,
-      height: 100,
-      className: "object-contain",
-    },
-    {
       src: "/images/companyLogos/Logo2.png",
       alt: "Image 2",
       link: "https://example.com/image2",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 217,
+      height: 24,
+      className: "object-fill w-[13.5625rem] h-[1.5rem]",
     },
+    {
+      src: "/images/companyLogos/Logo1.png",
+      alt: "Image 1",
+      link: "https://example.com/image1",
+
+      width: 135,
+      height: 32,
+      className: "object-fill w-[8.4375rem] h-[2rem]",
+    },
+
     {
       src: "/images/companyLogos/Logo3.png",
       alt: "Image 3",
       link: "https://example.com/image3",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 134,
+      height: 24,
+      className: "object-fill w-[8.375rem] h-[1.5rem]",
     },
     {
       src: "/images/companyLogos/Logo4.png",
       alt: "Image 4",
       link: "https://example.com/image4",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 114,
+      height: 32,
+      className: "object-fill  w-[7.125rem] h-[2rem]",
     },
     {
-      src: "/images/companyLogos/Logo5.png",
+      src1: "/images/companyLogos/Logo5.png",
+      src2: "/images/companyLogos/Logo51.png",
       alt: "Image 1",
       link: "https://example.com/image1",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 116,
+      height: 32,
+      className: "object-contain  w-[7.268rem] h-[2rem]",
+      TwoImages: true,
     },
     {
       src: "/images/companyLogos/Logo6.png",
       alt: "Image 2",
       link: "https://example.com/image2",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 116,
+      height: 32,
+      className: " obeject-fill w-[2.625rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo7.png",
       alt: "Image 3",
       link: "https://example.com/image3",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 116,
+      height: 32,
+      className: " obeject-fill w-[2.625rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo8.png",
@@ -191,25 +196,53 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
-      <div className=" flex items-center gap-x-[3.25rem] py-[1.75rem] w-screen">
-        {Imagelogs.map((image, index) => (
-          <Link
-            key={index}
-            href={image.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <ImageCard
-              key={image.src}
-              src={image.src}
-              alt={image.alt}
-              link={image.link}
-              width={image.width}
-              height={image.height}
-              className={image.className}
-            />
-          </Link>
-        ))}
+      <div className="bg-[#FFFFFF99] overflow-hidden flex items-center gap-x-[3.25rem] py-[1.75rem] w-full">
+        {Imagelogs.map((image, index) =>
+          image.TwoImages ? (
+            <Link
+              key={index}
+              href={image.link.trim()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex gap-x-0 "
+            >
+              {image.src1 && (
+                <Image
+                  src={image.src1}
+                  alt={`${image.alt} - 1`}
+                  width={image.width}
+                  height={image.height}
+                  className={image.className}
+                />
+              )}
+              {/* {image.src2 && (
+                <Image
+                  src={image.src2}
+                  alt={`${image.alt} - 2`}
+                  width={image.width}
+                  height={image.height}
+                  className={image.className}
+                />
+              )} */}
+            </Link>
+          ) : image.src ? (
+            <Link
+              key={index}
+              href={image.link.trim()}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ImageCard
+                src={image.src}
+                alt={image.alt}
+                link={image.link}
+                width={image.width}
+                height={image.height}
+                className={image.className}
+              />
+            </Link>
+          ) : null
+        )}
       </div>
     </div>
   );
