@@ -52,9 +52,9 @@ export default function HeroSection() {
       src: "/images/companyLogos/Logo6.png",
       alt: "Image 2",
       link: "https://example.com/image2",
-      width: 116,
+      width: 42,
       height: 32,
-      className: " obeject-fill w-[2.625rem] h-[2rem]",
+      className: "object-contain w-[2.625rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo7.png",
@@ -68,112 +68,120 @@ export default function HeroSection() {
       src: "/images/companyLogos/Logo8.png",
       alt: "Image 4",
       link: "https://example.com/image4",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 120,
+      height: 24,
+      className: "object-contain w-[7.5rem] h-[1.5rem]",
     },
     {
       src: "/images/companyLogos/Logo9.png",
 
       alt: "Image 1",
       link: "https://example.com/image1",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 95,
+      height: 32,
+      className: "object-contain w-[5.9375rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo10.png",
       alt: "Image 2",
       link: "https://example.com/image2",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 24,
+      height: 32,
+      className: "object-contain w-[1.5rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo11.png",
       alt: "Image 3",
       link: "https://example.com/image3",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 165,
+      height: 24,
+      className: "object-contain w-[10.3125rem] h-[1.5rem] ",
     },
     {
       src: "/images/companyLogos/Logo12.png",
       alt: "Image 4",
       link: "https://example.com/image4",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 29,
+      height: 32,
+      className: "object-contain w-[1.8125rem] h-[2rem]",
     },
 
     {
       src: "/images/companyLogos/Logo13.png",
       alt: "Image 1",
       link: "https://example.com/image1",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 33,
+      height: 32,
+      className: "object-contain w-[2.0625rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo14.png",
       alt: "Image 2",
       link: "https://example.com/image2",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 43,
+      height: 32,
+      className: "object-contain w-[2.6875rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo15.png",
       alt: "Image 3",
       link: "https://example.com/image3",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 112,
+      height: 32,
+      className: "object-contain w-[7rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo16.png",
       alt: "Image 4",
       link: "https://example.com/image4",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 190,
+      height: 32,
+      className: "object-contain w-[11.875rem] h-[2rem]",
     },
 
     {
       src: "/images/companyLogos/Logo17.png",
       alt: "Image 1",
       link: "https://example.com/image1",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 32,
+      height: 32,
+      className: "object-contain w-[2rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo18.png",
       alt: "Image 2",
       link: "https://example.com/image2",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 32,
+      height: 32,
+      className: "object-contain w-[2rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo19.png",
       alt: "Image 3",
       link: "https://example.com/image3",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 107,
+      height: 32,
+      className: "object-contain w-[6.6875rem] h-[2rem]",
     },
     {
       src: "/images/companyLogos/Logo20.png",
       alt: "Image 4",
       link: "https://example.com/image4",
-      width: 100,
-      height: 100,
-      className: "object-contain",
+      width: 272,
+      height: 32,
+      className: "object-contain w-[17.25rem] h-[2rem]",
+    },
+    {
+      src: "/images/companyLogos/Logo21.png",
+      alt: "Image 4",
+      link: "https://example.com/image4",
+      width: 36,
+      height: 32,
+      className: "object-contain h-[2rem] w-[2.25rem]",
     },
   ];
   return (
-    <div className="dotted-bg-simple w-full h-full flex-1 flex flex-col items-center justify-between  bg-gradient-to-b from-black via-[#0a0a1a] to-[#0f0c3d]">
+    <div className="  dotted-bg-simple w-full h-full flex-1 flex flex-col items-center justify-between">
       <section className=" flex items-center justify-center flex-1 ">
         <div className="space-y-4 ">
           <div className="space-y-[2rem]">
@@ -196,54 +204,107 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
-      <div className="bg-[#FFFFFF99] overflow-hidden flex items-center gap-x-[3.25rem] py-[1.75rem] w-full">
-        {Imagelogs.map((image, index) =>
-          image.TwoImages ? (
-            <Link
-              key={index}
-              href={image.link.trim()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex gap-x-0 "
-            >
-              {image.src1 && (
-                <Image
-                  src={image.src1}
-                  alt={`${image.alt} - 1`}
+      <div className="bg-[#FFFFFF99] overflow-hidden py-[1.75rem]  w-full relative">
+        <div className="  flex items-center animate-scroll gap-x-[3.25rem]  whitespace-nowrap w-max ">
+          {Imagelogs.map((image, index) =>
+            image.TwoImages ? (
+              <Link
+                key={index}
+                href={image.link.trim()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-x-0 "
+              >
+                {image.src1 && (
+                  <Image
+                    src={image.src1}
+                    alt={`${image.alt} - 1`}
+                    width={image.width}
+                    height={image.height}
+                    className={image.className}
+                  />
+                )}
+                {image.src2 && (
+                  <Image
+                    src={image.src2}
+                    alt={`${image.alt} - 2`}
+                    width={image.width}
+                    height={image.height}
+                    className={image.className}
+                  />
+                )}
+              </Link>
+            ) : image.src ? (
+              <Link
+                key={index}
+                href={image.link.trim()}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ImageCard
+                  src={image.src}
+                  alt={image.alt}
+                  link={image.link}
                   width={image.width}
                   height={image.height}
                   className={image.className}
                 />
-              )}
-              {/* {image.src2 && (
-                <Image
-                  src={image.src2}
-                  alt={`${image.alt} - 2`}
-                  width={image.width}
-                  height={image.height}
-                  className={image.className}
-                />
-              )} */}
-            </Link>
-          ) : image.src ? (
-            <Link
-              key={index}
-              href={image.link.trim()}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ImageCard
-                src={image.src}
-                alt={image.alt}
-                link={image.link}
-                width={image.width}
-                height={image.height}
-                className={image.className}
-              />
-            </Link>
-          ) : null
-        )}
+              </Link>
+            ) : null
+          )}
+        </div>
       </div>
+      {/* <div className="bg-[#FFFFFF99] overflow-hidden py-[1.75rem] w-full relative">
+        <div className="flex animate-scroll space-x-[3.25rem] whitespace-nowrap w-max">
+          {[...Imagelogs, ...Imagelogs].map((image, index) =>
+            image.TwoImages ? (
+              <Link
+                key={index}
+                href={image.link.trim()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-x-0 flex-shrink-0"
+              >
+                {image.src1 && (
+                  <Image
+                    src={image.src1}
+                    alt={`${image.alt} - 1`}
+                    width={image.width}
+                    height={image.height}
+                    className={image.className}
+                  />
+                )}
+                {image.src2 && (
+                  <Image
+                    src={image.src2}
+                    alt={`${image.alt} - 2`}
+                    width={image.width}
+                    height={image.height}
+                    className={image.className}
+                  />
+                )}
+              </Link>
+            ) : image.src ? (
+              <Link
+                key={index}
+                href={image.link.trim()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0"
+              >
+                <ImageCard
+                  src={image.src}
+                  alt={image.alt}
+                  link={image.link}
+                  width={image.width}
+                  height={image.height}
+                  className={image.className}
+                />
+              </Link>
+            ) : null
+          )}
+        </div>
+      </div> */}
     </div>
   );
 }

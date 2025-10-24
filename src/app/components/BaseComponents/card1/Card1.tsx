@@ -3,7 +3,7 @@ import HeaderCard1 from "./HeaderCard1";
 
 const Card1 = () => {
   return (
-    <div className=" px-10 md:px-[5rem] lg:px-[15rem] py-[5rem] space-y-[5rem] ">
+    <div className="  py-[5rem] space-y-[5rem] ">
       <div className="bg-foreground-strong flex justify-center  ">
         <div className="flex flex-col items-center gap-y-4">
           <h1 className="text-[1.25rem] text-white font-normal">

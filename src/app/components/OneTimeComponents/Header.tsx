@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const pathName = usePathname();
@@ -12,7 +12,18 @@ export default function Header() {
     setLanguage((prev) => (prev === "KR" ? "EN" : "KR"));
   };
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
 
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isMenuOpen]);
   const navItems = [
     { name: "개발 외주", href: "/" },
     { name: "요금 정책", href: "/price" },
@@ -22,7 +33,7 @@ export default function Header() {
 
   return (
     <div>
-      <div className="bg-[#09090B] text-white font-semibold font-pretendard lg:px-[5rem] py-[1.81rem]">
+      <div className="bg-[#09090B] text-white font-semibold font-pretendard px-[5rem] py-[1.81rem]">
         {/* main header */}
         <div className="w-full container mx-auto flex  items-center justify-between   ">
           <Link href="/" className="flex items-center  cursor-pointer ">
@@ -73,9 +84,15 @@ export default function Header() {
                 </button>
               </div>
             </nav>
-            <button className="  px-[1.5rem] py-[0.75rem] border-[0.125rem] border-[#FF7B00] whitespace-nowrap text-[1rem] font-bold rounded-full  cursor-pointer">
+            <Link
+              href="/estimation"
+              className={`px-[1.5rem] py-[0.75rem] border-[0.125rem] border-[#FF7B00] 
+            whitespace-nowrap text-[1rem] 
+            font-bold rounded-full  hover:text-primary
+            ${pathName === "/estimation" ? "text-primary" : "text-white"}`}
+            >
               3초만에 견적받기
-            </button>
+            </Link>
 
             {/* mobile menu button */}
             <button
@@ -115,7 +132,7 @@ export default function Header() {
                 href={item.href}
                 className={` ${
                   item.href === pathName ? "text-primary" : "text-white"
-                }text-lg hover:text-primary transition-colors`}
+                } text-lg hover:text-primary transition-colors`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}

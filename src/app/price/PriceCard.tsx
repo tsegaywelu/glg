@@ -3,7 +3,7 @@ import Input from "../components/BaseComponents/Input";
 import CheckIcon from "../components/Icons/CheckIcon";
 const PriceCard = () => {
   return (
-    <div className="px-10 md:px-[5rem] lg:px-[15rem] py-[5rem] space-y-[5rem]">
+    <div className=" py-[5rem] space-y-[5rem]">
       <div className="space-y-[1rem]">
         <div className="text-5 font-normal text-white text-center">
           <div>서비스 금액은 합리적이게</div>

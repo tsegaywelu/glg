@@ -10,7 +10,7 @@ interface Props {
 }
 const ImageCard = ({ src, alt, link, width, height, className }: Props) => {
   return (
-    <div className="h-full w-full">
+    <div className="inline-block">
       <Image
         src={src}
         alt={alt}

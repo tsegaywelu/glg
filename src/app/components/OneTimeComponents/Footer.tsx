@@ -11,7 +11,7 @@ const Footer = () => {
     "통신판매업신고 : 2025-대구동구-0769",
   ];
   return (
-    <footer className=" px-10 md:px-[5rem] lg:px-[15rem] py-[5rem] font-pretendared  space-y-[5rem]">
+    <footer className=" font-pretendard  py-[5rem]   space-y-[5rem]">
       <div className="flex flex-col gap-y-[5rem] md:flex-row md:justify-between ">
         <div className="flex flex-col gap-[1.5rem]">
           <div className="flex flex-col gap-[0.75rem]">

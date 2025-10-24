@@ -19,7 +19,7 @@ const BodyCard2 = ({
       <img
         src={ImageURL}
         alt="Image preview"
-        className="object-fit w-[25.1667rem] h-[13.375rem]"
+        className="object-contain w-[25.1667rem] h-[13.375rem]"
       />
       <div
         className="font-semibold font-pretendard text-white text-[0.75rem] px-2.5 py-0.5 rounded-md"

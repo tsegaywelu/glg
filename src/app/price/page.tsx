@@ -1,3 +1,5 @@
+import Question from "../components/BaseComponents/QuestionCard/Question";
+import Footer from "../components/OneTimeComponents/Footer";
 import Header from "../components/OneTimeComponents/Header";
 import PriceCard from "./PriceCard";
 
@@ -7,10 +9,15 @@ const page = () => {
       <div>
         <Header />
         <div className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem] font-bold text-center">
-          지금 문의하면 개발자 3일 무료
+          <span className="font-normal">지금 문의하면</span>
+          <span className="font-bold"> 3일간 서비스 무료</span>
         </div>
       </div>
-      <PriceCard />
+      <div className="px-10 md:px-[5rem] lg:px-[15rem]">
+        <PriceCard />
+        <Question />
+        <Footer />
+      </div>
     </div>
   );
 };

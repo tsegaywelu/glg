@@ -26,7 +26,7 @@ const AllImages = [
 ];
 const Card3 = () => {
   return (
-    <div className=" px-10 md:px-[5rem] lg:px-[15rem] py-[5rem] space-y-[5rem] ">
+    <div className="  py-[5rem] space-y-[5rem] ">
       <HeaderCard3 />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[5.5rem]">
         {AllImages.map((image, index) => (

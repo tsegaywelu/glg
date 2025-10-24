@@ -16,12 +16,13 @@ export default function Home() {
         <div>
           <Header />
           <div className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem] font-bold text-center">
-            지금 문의하면 개발자 3일 무료
+            <span className="font normal">지금 문의하면</span>
+            <span className="font-bold"> 개발자 3일 무료</span>
           </div>
         </div>
         <HeroSection />
       </main>
-      <div className="">
+      <div className="px-[5rem] lg:px-[15rem]">
         <Card1 />
         <Card2 />
         <Card3 />
