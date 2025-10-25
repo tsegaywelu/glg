@@ -181,8 +181,8 @@ export default function HeroSection() {
     },
   ];
   return (
-    <div className="  dotted-bg-simple w-full h-full flex-1 flex flex-col items-center justify-between">
-      <section className=" flex items-center justify-center flex-1 ">
+    <div className=" dotted-bg-simple w-full h-full flex-1 flex flex-col items-center justify-between">
+      <section className=" flex items-center justify-center flex-1 px-[5rem]  ">
         <div className="space-y-4 ">
           <div className="space-y-[2rem]">
             <div className="text-[1.25rem] text-[#71717A] text-center font-normal">

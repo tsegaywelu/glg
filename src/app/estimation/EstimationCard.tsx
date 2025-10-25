@@ -6,7 +6,7 @@ import CeckBoxSelection from "../components/UI/CeckBoxSelection";
 import GiveMeQuestion from "../components/UI/GiveMeQuestion";
 import QuestionWithCheckBox from "../components/UI/QuestionWithCheckBox";
 import TextArea from "../components/UI/TextArea";
-
+import { FormData } from "../Type";
 const EstimationCard = () => {
   const Button1Texts = ["기획", "디자인", "개발", "배포"];
   const Button2Texts = [
@@ -28,6 +28,152 @@ const EstimationCard = () => {
   ];
 
   const [ShowAllQestions, setShowAllQuestions] = useState(false);
+  const [formData, setFormData] = useState({
+    // Q1: Contact Information
+    companyName: "",
+    contactPerson: "",
+    email: "",
+
+    // Q2: Development Type (mutually exclusive)
+    developmentType: {
+      homepage: false,
+      mobileApp: false,
+      webService: false,
+    },
+
+    developmentStatus: {
+      newDevelopment: false,
+      maintenance: false,
+    },
+    budget: "",
+    projectDeadline: "",
+
+    planningStatus: {
+      onlyIdea: false,
+      basicRequirements: false,
+      detailedDocuments: false,
+    },
+    requirements: "",
+    projectOverview: "",
+    preferredLanguages: "",
+  });
+  const handleTextInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+  // Single handler for radio-like groups (mutually exclusive)
+  const handleRadioGroupChange = <T extends object>(
+    group: keyof FormData,
+    field: keyof T
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [group]: Object.keys(prev[group] as T).reduce(
+        (acc, key) => ({
+          ...acc,
+          [key]: key === field,
+        }),
+        {} as T
+      ),
+    }));
+  };
+
+  const handleDevelopmentTypeChange = (
+    type: keyof typeof formData.developmentType
+  ) => {
+    setFormData((prev) => {
+      const currentState = prev.developmentType;
+
+      if (type === "homepage") {
+        // Toggle homepage independently
+        return {
+          ...prev,
+          developmentType: {
+            ...currentState,
+            homepage: !currentState.homepage,
+          },
+        };
+      } else if (type === "mobileApp") {
+        // Select mobileApp, deselect webService
+        return {
+          ...prev,
+          developmentType: {
+            ...currentState,
+            mobileApp: !currentState.mobileApp,
+            webService:
+              currentState.webService && !currentState.mobileApp
+                ? false
+                : currentState.webService,
+          },
+        };
+      } else if (type === "webService") {
+        // Select webService, deselect mobileApp
+        return {
+          ...prev,
+          developmentType: {
+            ...currentState,
+            webService: !currentState.webService,
+            mobileApp:
+              currentState.mobileApp && !currentState.webService
+                ? false
+                : currentState.mobileApp,
+          },
+        };
+      }
+
+      return prev;
+    });
+  };
+  // Handler for Q3: Development Status (radio buttons - mutually exclusive)
+  const handleDevelopmentStatusChange = (
+    type: keyof typeof formData.developmentStatus
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      developmentStatus: {
+        newDevelopment: type === "newDevelopment",
+        maintenance: type === "maintenance",
+      },
+    }));
+  };
+
+  const handleSubmit = () => {
+    // Prepare data for email
+    const submissionData = {
+      contact: {
+        company: formData.companyName,
+        contactPerson: formData.contactPerson,
+        email: formData.email,
+      },
+      developmentNeeds: {
+        homepage: formData.developmentType.homepage,
+        mobileApp: formData.developmentType.mobileApp,
+        webService: formData.developmentType.webService,
+      },
+      developmentStatus: {
+        newDevelopment: formData.developmentStatus.newDevelopment,
+        maintenance: formData.developmentStatus.maintenance,
+      },
+      budget: formData.budget
+        ? `W${parseInt(formData.budget).toLocaleString()}`
+        : "Not specified",
+      projectDeadline: formData.projectDeadline,
+      planningStatus: {
+        onlyIdea: formData.planningStatus.onlyIdea,
+        basicRequirements: formData.planningStatus.basicRequirements,
+        detailedDocuments: formData.planningStatus.detailedDocuments,
+      },
+      requirements: formData.requirements,
+      projectOverview: formData.projectOverview,
+      preferredLanguages: formData.preferredLanguages,
+    };
+
+    console.log("Form Submission Data:", submissionData);
+
+    alert("상담 신청이 완료되었습니다! 곧 연락드리겠습니다.");
+  };
   return (
     <div className="py-[5rem] space-y-[2.5rem]">
       <div className=" flex flex-col items-center justify-center gap-y-4">
@@ -59,6 +205,10 @@ const EstimationCard = () => {
                   id="first"
                   label="회사명"
                   placeholder="회사명 입력"
+                  value={formData.companyName}
+                  onChange={(value) =>
+                    handleTextInputChange("companyName", value)
+                  }
                 />
               </div>
               <div>
@@ -66,6 +216,10 @@ const EstimationCard = () => {
                   id="second"
                   label="담당자"
                   placeholder="성함 입력"
+                  value={formData.contactPerson}
+                  onChange={(value) =>
+                    handleTextInputChange("contactPerson", value)
+                  }
                 />
               </div>
               <div>
@@ -73,6 +227,8 @@ const EstimationCard = () => {
                   id="third"
                   label="이메일"
                   placeholder="이메일 입력"
+                  value={formData.email}
+                  onChange={(value) => handleTextInputChange("email", value)}
                 />
               </div>
             </div>
@@ -87,18 +243,24 @@ const EstimationCard = () => {
                   titel="홈페이지"
                   Totalwon="평균 : 400만원~"
                   QuestionNumber="Question1"
+                  isSelected={formData.developmentType.homepage}
+                  onToggle={() => handleDevelopmentTypeChange("homepage")}
                 />
                 <CeckBoxSelection
                   ButtonTexts={Button2Texts}
                   titel="아이폰 앱, 안드로이드 앱"
                   Totalwon="평균 : 1,600만원~"
                   QuestionNumber="Question2"
+                  isSelected={formData.developmentType.mobileApp}
+                  onToggle={() => handleDevelopmentTypeChange("mobileApp")}
                 />
                 <CeckBoxSelection
                   ButtonTexts={Button3Texts}
                   titel="앱/웹 서비스, 플랫폼"
                   Totalwon="평균 : 4,000만원~"
                   QuestionNumber="Question3"
+                  isSelected={formData.developmentType.webService}
+                  onToggle={() => handleDevelopmentTypeChange("webService")}
                 />
               </div>
             </div>
@@ -108,8 +270,18 @@ const EstimationCard = () => {
                 QuestionText="기존에 개발 된 것이 있나요?"
               />
               <div className="space-y-[1.25rem] md:space-y-[0rem] md:flex md:justify-between md:items-center lg:pr-16 ">
-                <QuestionWithCheckBox QuestionText="신규 개발" />
-                <QuestionWithCheckBox QuestionText="유지보수 / 리뉴얼" />
+                <QuestionWithCheckBox
+                  QuestionText="신규 개발"
+                  checked={formData.developmentStatus.newDevelopment}
+                  onChange={() =>
+                    handleDevelopmentStatusChange("newDevelopment")
+                  }
+                />
+                <QuestionWithCheckBox
+                  QuestionText="유지보수 / 리뉴얼"
+                  checked={formData.developmentStatus.maintenance}
+                  onChange={() => handleDevelopmentStatusChange("maintenance")}
+                />
                 <div className="w-1/5"></div>
               </div>
             </div>
@@ -123,6 +295,13 @@ const EstimationCard = () => {
                   placeholder="숫자만 입력"
                   label="만원"
                   id="budget"
+                  value={formData.budget}
+                  onChange={(value) =>
+                    handleTextInputChange(
+                      "budget",
+                      value.replace(/[^0-9]/g, "")
+                    )
+                  }
                 />
               </div>
             </div>
@@ -136,7 +315,14 @@ const EstimationCard = () => {
                     NoStar
                   />
                   <div>
-                    <WhiteInput placeholder="12월 31일" id="budget" />
+                    <WhiteInput
+                      placeholder="12월 31일"
+                      id="deadline"
+                      value={formData.projectDeadline}
+                      onChange={(value) =>
+                        handleTextInputChange("projectDeadline", value)
+                      }
+                    />
                   </div>
                 </div>
                 <div className="space-y-[2rem]">
@@ -146,9 +332,33 @@ const EstimationCard = () => {
                     NoStar
                   />
                   <div className="space-y-[1.25rem] md:space-y-[0rem] md:flex md:justify-between md:items-center lg:pr-16 ">
-                    <QuestionWithCheckBox QuestionText="아이디어만 있음" />
-                    <QuestionWithCheckBox QuestionText="필요한 내용이 간단히 정리됨" />
-                    <QuestionWithCheckBox QuestionText="상세한 문서 보유" />
+                    <QuestionWithCheckBox
+                      QuestionText="아이디어만 있음"
+                      checked={formData.planningStatus.onlyIdea}
+                      onChange={() =>
+                        handleRadioGroupChange("planningStatus", "onlyIdea")
+                      }
+                    />
+                    <QuestionWithCheckBox
+                      QuestionText="필요한 내용이 간단히 정리됨"
+                      checked={formData.planningStatus.basicRequirements}
+                      onChange={() =>
+                        handleRadioGroupChange(
+                          "planningStatus",
+                          "basicRequirements"
+                        )
+                      }
+                    />
+                    <QuestionWithCheckBox
+                      QuestionText="상세한 문서 보유"
+                      checked={formData.planningStatus.detailedDocuments}
+                      onChange={() =>
+                        handleRadioGroupChange(
+                          "planningStatus",
+                          "detailedDocuments"
+                        )
+                      }
+                    />
                   </div>
                 </div>
                 <div className="space-y-[2rem]">
@@ -161,6 +371,10 @@ const EstimationCard = () => {
                     numOfrow={4}
                     placeholder={`- 현재 앱을 개발하다가 중단된 상태입니다.
                                  - 백엔드 개발은 완료된 상태이며, 남은 작업을 저희 앱 개발자와 함께 진행해주실 업체를 찾고 있습니다.`}
+                    value={formData.requirements}
+                    onChange={(value) =>
+                      handleTextInputChange("requirements", value)
+                    }
                   />
                 </div>
                 <div className="space-y-[2rem]">
@@ -177,6 +391,10 @@ const EstimationCard = () => {
                                     • 네이버 지도 연동
                                     • PG 연동
                                     - 가장 최신의 기획문서는 OOO, 디자인 파일은 OOO에서 보실 수 있습니다.`}
+                    value={formData.projectOverview}
+                    onChange={(value) =>
+                      handleTextInputChange("projectOverview", value)
+                    }
                   />
                 </div>
                 <div className="space-y-[2rem]">
@@ -191,6 +409,10 @@ const EstimationCard = () => {
                                     - NestJS
                                     - Typescript
                                     - NextJS`}
+                    value={formData.preferredLanguages}
+                    onChange={(value) =>
+                      handleTextInputChange("preferredLanguages", value)
+                    }
                   />
                 </div>
               </div>

@@ -32,14 +32,14 @@ body {
 }
 
 .dotted-bg-simple {
-  background-image: linear-gradient(to bottom, black, #0a0a1a, #0f0c3d),
-    url("/images/HeroBackground1.png");
-  /* background-image: linear-gradient(
+  /* background-image: linear-gradient(to bottom, black, #0a0a1a, #0f0c3d),
+    url("/images/HeroBackground1.png"); */
+  background-image: linear-gradient(
       to bottom,
       #000 0%,
       rgba(65, 65, 149, 0) 70%
     ),
-    url("/images/HeroBackground1.png"); */
+    url("/images/HeroBackground1.png");
 
   /* background-image: url("/images/HeroBackground1.png"); */
   background-size: cover;

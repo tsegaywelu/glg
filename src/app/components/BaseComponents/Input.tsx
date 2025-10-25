@@ -11,7 +11,7 @@ const Input = ({ placeholder, label, type, id }: InputProps) => {
       <input
         type={type || "text"}
         id={id}
-        className="font-semibold text-[1.25rem]  border-b-[0.125rem] border-primary pb-3 pt-2 focus:outline-none max-w-[4.5rem] md:min-w-[10.25rem] text-center
+        className="font-semibold text-[1.25rem]  border-b-[0.125rem] border-primary pb-3 pt-2 focus:outline-none  text-center
         placeholder:text-[#fff] placeholder:opacity-[30%] text-[#fff]"
         placeholder={placeholder}
       />

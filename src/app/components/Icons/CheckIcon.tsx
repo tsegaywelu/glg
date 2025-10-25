@@ -1,6 +1,10 @@
-const CheckIcon = () => {
+const CheckIcon = ({ checked }: { checked: boolean }) => {
   return (
-    <span className="bg-[#FF7B004D] p-2 rounded-full inline-flex items-center justify-center shadow-md">
+    <span
+      className={` ${
+        checked ? "bg-primary" : "bg-[#FF7B004D]"
+      } p-2 rounded-full inline-flex items-center justify-center shadow-md`}
+    >
       <svg
         width="24"
         height="24"

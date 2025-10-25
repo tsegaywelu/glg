@@ -6,16 +6,27 @@ type ButtonProps = {
   titel: string;
   Totalwon: string;
   QuestionNumber: string;
+  isSelected: boolean;
+  onToggle: () => void;
 };
 const CeckBoxSelection = ({
   ButtonTexts,
   titel,
   Totalwon,
   QuestionNumber,
+  isSelected,
+  onToggle,
 }: ButtonProps) => {
+  // Handler for checkbox selections in CeckBoxSelection components
+  const handleOptionSelect = (
+    questionNumber: string,
+    selectedItems: string[]
+  ) => {
+    console.log(`Question ${questionNumber} selected:`, selectedItems);
+  };
   return (
-    <div className="flex items-center gap-[1.25rem]">
-      <CheckIcon />
+    <div className="flex items-center gap-[1.25rem]" onClick={onToggle}>
+      <CheckIcon checked={isSelected} />
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-y-1  ">
           <p className="text-[1.25rem] font-bold text-[#000]">{titel}</p>

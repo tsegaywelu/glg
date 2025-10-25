@@ -16,7 +16,7 @@ const HeaderCard1 = ({
 }: headerProps) => {
   return (
     <div
-      className={`xl:w-[23.7708rem] bg-[#1E1E1E] px-[2.5rem] py-[2rem] flex flex-col items-center  gap-y-[1.25rem] border rounded-[0.125rem]`}
+      className={`w-full bg-[#1E1E1E] px-[2.5rem] py-[2rem] flex flex-col items-center  gap-y-[1.25rem] border rounded-[0.125rem]`}
       style={{ borderColor: borderColor }}
     >
       <div
