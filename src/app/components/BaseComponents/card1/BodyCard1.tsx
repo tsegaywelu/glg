@@ -1,16 +1,4 @@
-// type BodyCard1Props = { ImageURL: string; Text: string };
-
 import { ReactNode } from "react";
-
-// const BodyCard1 = ({ ImageURL, Text }: BodyCard1Props) => {
-//   return (
-//     <div className="  ">
-//       <img src={ImageURL} alt="" />
-//     </div>
-//   );
-// };
-
-// export default BodyCard1;
 
 type bodyPrpoststype = {
   Texts: ReactNode;

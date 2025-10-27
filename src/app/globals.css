@@ -101,9 +101,3 @@ html {
 .animate-scroll:hover {
   animation-play-state: paused;
 }
-
-/* lets made reponsive padding */
-.responsive-padding {
-  padding-left: 15rem;
-  padding-right: 15rem;
-}
