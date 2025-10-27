@@ -7,8 +7,10 @@ import QuestionWithCheckBox from "../../UI/QuestionWithCheckBox";
 import QestionHeader from "./QestionHeader";
 import QR from "./QR";
 import WhiteInput from "./WiteInput";
-import { FormData } from "../../../Type";
+// import { FormData } from "../../../Type";
+import { useRouter } from "next/navigation";
 const Question = () => {
+  const router = useRouter();
   const Button1Texts = ["기획", "디자인", "개발", "배포"];
   const Button2Texts = [
     "iOS앱",
@@ -110,11 +112,50 @@ const Question = () => {
     }));
   };
 
+  const handleNavigation = () => {
+    const params = new URLSearchParams();
+    // Validation: at least one development type must be selected
+    const hasDevType =
+      formData.developmentType.homepage ||
+      formData.developmentType.mobileApp ||
+      formData.developmentType.webService;
+
+    // Validation: development status must be selected
+    const hasDevStatus =
+      formData.developmentStatus.newDevelopment ||
+      formData.developmentStatus.maintenance;
+
+    // Validation: budget is required
+    if (!hasDevType || !hasDevStatus || !formData.budget) {
+      alert("Please fill all forms");
+      return;
+    }
+
+    // Q1: Development Type (can be multiple)
+    if (formData.developmentType.homepage) params.append("type", "homepage");
+    if (formData.developmentType.mobileApp) params.append("type", "mobileApp");
+    if (formData.developmentType.webService)
+      params.append("type", "webService");
+
+    // Q2: Development Status (mutually exclusive)
+    if (formData.developmentStatus.newDevelopment) {
+      params.set("status", "new");
+    } else if (formData.developmentStatus.maintenance) {
+      params.set("status", "maint");
+    }
+
+    // Q3: Budget (only if not empty)
+    if (formData.budget) {
+      params.set("budget", formData.budget);
+    }
+
+    router.push(`/estimation?${params.toString()}`);
+  };
   return (
-    <div className="  py-[5rem] space-y-10">
+    <div className=" w-full  py-[5rem] space-y-10">
       <QestionHeader />
-      <div className=" w-full flex  flex-col items-center md:flex-row md:items-start md:justify-center gap-10 ">
-        <div className="bg-white  p-10 space-y-[2.5rem] ">
+      <div className=" w-full  lg:max-w-[57.1875rem] mx-auto flex  flex-col items-center lg:flex-row lg:items-start lg:justify-center gap-10 ">
+        <div className="w-full bg-white p-10 space-y-[2.5rem] ">
           {/* <GiveMeQuestion QuestionNmeber="" QuestionText="" /> */}
           {/* <Button ButtonText="" /> */}
           <div className="space-y-[2.5rem]">
@@ -170,7 +211,7 @@ const Question = () => {
                 />
               </div>
             </div>
-            <div className="space-y-[2rem]">
+            <div className="space-y-[2rem] ">
               <GiveMeQuestion
                 QuestionNmeber="Q3"
                 QuestionText="정해진 예산은 어느정도인가요?"
@@ -187,11 +228,15 @@ const Question = () => {
                       value.replace(/[^0-9]/g, "")
                     )
                   }
+                  QuestionComponent
                 />
               </div>
             </div>
           </div>
-          <button className="text-white text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full">
+          <button
+            className="text-white text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full"
+            onClick={handleNavigation}
+          >
             빠른 상담받기
           </button>
         </div>

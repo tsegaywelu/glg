@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import WhiteInput from "../components/BaseComponents/QuestionCard/WiteInput";
 import CeckBoxSelection from "../components/UI/CeckBoxSelection";
 import GiveMeQuestion from "../components/UI/GiveMeQuestion";
@@ -26,8 +27,9 @@ const EstimationCard = () => {
     "개발",
     "배포",
   ];
-
+  const searchParams = useSearchParams();
   const [ShowAllQestions, setShowAllQuestions] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     // Q1: Contact Information
     companyName: "",
@@ -57,6 +59,27 @@ const EstimationCard = () => {
     projectOverview: "",
     preferredLanguages: "",
   });
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const types = searchParams.getAll("type");
+      const status = searchParams.get("status");
+      const budget = searchParams.get("budget") || "";
+
+      setFormData((prev) => ({
+        ...prev,
+        developmentType: {
+          homepage: types.includes("homepage"),
+          mobileApp: types.includes("mobileApp"),
+          webService: types.includes("webService"),
+        },
+        developmentStatus: {
+          newDevelopment: status === "new",
+          maintenance: status === "maint",
+        },
+        budget,
+      }));
+    }
+  }, [searchParams]);
   const handleTextInputChange = (field: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -139,7 +162,27 @@ const EstimationCard = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    // Basic validation
+    // Validation: at least one development type must be selected
+    const hasDevType =
+      formData.developmentType.homepage ||
+      formData.developmentType.mobileApp ||
+      formData.developmentType.webService;
+
+    // Validation: development status must be selected
+    const hasDevStatus =
+      formData.developmentStatus.newDevelopment ||
+      formData.developmentStatus.maintenance;
+
+    // Validation: budget is required
+    if (!hasDevType || !hasDevStatus || !formData.budget) {
+      alert("Please fill all required forms"); // "Please answer all questions."
+      return;
+    }
+
+    setIsSubmitting(true);
+
     // Prepare data for email
     const submissionData = {
       contact: {
@@ -158,7 +201,7 @@ const EstimationCard = () => {
       },
       budget: formData.budget
         ? `W${parseInt(formData.budget).toLocaleString()}`
-        : "Not specified",
+        : "미입력",
       projectDeadline: formData.projectDeadline,
       planningStatus: {
         onlyIdea: formData.planningStatus.onlyIdea,
@@ -170,9 +213,48 @@ const EstimationCard = () => {
       preferredLanguages: formData.preferredLanguages,
     };
 
-    console.log("Form Submission Data:", submissionData);
-
-    alert("상담 신청이 완료되었습니다! 곧 연락드리겠습니다.");
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submissionData),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        alert("email has been sent!");
+        // Optionally reset form
+        setFormData({
+          companyName: "",
+          contactPerson: "",
+          email: "",
+          developmentType: {
+            homepage: false,
+            mobileApp: false,
+            webService: false,
+          },
+          developmentStatus: { newDevelopment: false, maintenance: false },
+          budget: "",
+          projectDeadline: "",
+          planningStatus: {
+            onlyIdea: false,
+            basicRequirements: false,
+            detailedDocuments: false,
+          },
+          requirements: "",
+          projectOverview: "",
+          preferredLanguages: "",
+        });
+      } else {
+        throw new Error(result.error || "Unknown error");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Submission failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <div className="py-[5rem] space-y-[2.5rem]">
@@ -237,7 +319,7 @@ const EstimationCard = () => {
                 QuestionNmeber="Q2"
                 QuestionText="개발하려는 것이 어떤건가요?"
               />
-              <div className="flex flex-col gap-y-[1.25rem] md:flex-row md:justify-between lg:pr-16 ">
+              <div className="flex flex-col gap-y-[1.25rem] md:grid md:grid-cols-3  ">
                 <CeckBoxSelection
                   ButtonTexts={Button1Texts}
                   titel="홈페이지"
@@ -269,7 +351,7 @@ const EstimationCard = () => {
                 QuestionNmeber="Q3"
                 QuestionText="기존에 개발 된 것이 있나요?"
               />
-              <div className="space-y-[1.25rem] md:space-y-[0rem] md:flex md:justify-between md:items-center lg:pr-16 ">
+              <div className="space-y-[1.25rem] md:space-y-[0rem] md:grid md:grid-cols-3  ">
                 <QuestionWithCheckBox
                   QuestionText="신규 개발"
                   checked={formData.developmentStatus.newDevelopment}
@@ -282,7 +364,6 @@ const EstimationCard = () => {
                   checked={formData.developmentStatus.maintenance}
                   onChange={() => handleDevelopmentStatusChange("maintenance")}
                 />
-                <div className="w-1/5"></div>
               </div>
             </div>
             <div className="space-y-[2rem]">
@@ -331,7 +412,7 @@ const EstimationCard = () => {
                     QuestionText="현재 기획 상태는 어떤가요?"
                     NoStar
                   />
-                  <div className="space-y-[1.25rem] md:space-y-[0rem] md:flex md:justify-between md:items-center lg:pr-16 ">
+                  <div className="space-y-[1.25rem] md:space-y-[0rem] md:grid md:grid-cols-3 ">
                     <QuestionWithCheckBox
                       QuestionText="아이디어만 있음"
                       checked={formData.planningStatus.onlyIdea}
@@ -422,13 +503,21 @@ const EstimationCard = () => {
 
           {ShowAllQestions ? (
             <div>
-              <button className="text-white text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full">
+              <button
+                className="text-white disabled:opacity-20 text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full"
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+              >
                 상담 신청
               </button>
             </div>
           ) : (
             <div className="flex items-center gap-x-[1rem]">
-              <button className="text-white text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full">
+              <button
+                className="text-white disabled:opacity-20  text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full"
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+              >
                 여기까지 작성 후 상담받기
               </button>
               <button

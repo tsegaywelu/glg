@@ -5,6 +5,7 @@ type InputProps = {
   id: string;
   value: string;
   onChange: (value: string) => void;
+  QuestionComponent?: boolean;
 };
 
 const WhiteInput = ({
@@ -14,6 +15,7 @@ const WhiteInput = ({
   id,
   value,
   onChange,
+  QuestionComponent,
 }: InputProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
@@ -23,8 +25,12 @@ const WhiteInput = ({
       <input
         type={type || "text"}
         id={id}
-        className="font-semibold text-[1.25rem]  border-b-[0.125rem] border-primary pb-3 pt-2 focus:outline-none  text-center
-        placeholder:text-[#09090B] placeholder:opacity-[30%] text-[#09090B]"
+        className={`font-semibold text-[1.25rem]  border-b-[0.125rem] border-primary 
+          pb-3 pt-2 focus:outline-none  text-center
+        placeholder:text-[#09090B] placeholder:opacity-[30%] text-[#09090B]
+        ${
+          QuestionComponent ? "max-w-[11.375rem]" : "w-full text-start md:w-fit"
+        }`}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}

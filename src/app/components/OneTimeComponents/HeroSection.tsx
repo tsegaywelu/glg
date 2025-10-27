@@ -39,15 +39,14 @@ export default function HeroSection() {
       className: "object-fill  w-[7.125rem] h-[2rem]",
     },
     {
-      src1: "/images/companyLogos/Logo5.png",
-      src2: "/images/companyLogos/Logo51.png",
-      alt: "Image 1",
-      link: "https://example.com/image1",
-      width: 116,
+      src: "/images/companyLogos/Logo55.png",
+      alt: "Image 5",
+      link: "https://example.com/image5",
+      width: 114,
       height: 32,
-      className: "object-contain  w-[7.268rem] h-[2rem]",
-      TwoImages: true,
+      className: "object-fill  w-[7.3816rem] h-[2rem]",
     },
+
     {
       src: "/images/companyLogos/Logo6.png",
       alt: "Image 2",
@@ -181,7 +180,7 @@ export default function HeroSection() {
     },
   ];
   return (
-    <div className=" dotted-bg-simple w-full h-full flex-1 flex flex-col items-center justify-between">
+    <div className=" dotted-bg-simple w-full h-full flex-1 flex flex-col items-center gap-y-[6.66rem] pt-[11rem]">
       <section className=" flex items-center justify-center flex-1 px-[5rem]  ">
         <div className="space-y-4 ">
           <div className="space-y-[2rem]">
@@ -197,114 +196,37 @@ export default function HeroSection() {
               옆에 있는 것처럼 진행 과정을 쉽게 확인하면서 외주 맡기세요
             </div>
             <div className="flex justify-center ">
-              <button className="text-[1rem] bg-[#FF7B00] px-6 py-4 rounded-full">
+              <Link
+                href={"/estimation"}
+                className="text-[1rem] bg-[#FF7B00] px-6 py-4 rounded-full text-white font-bold"
+              >
                 3초만에 견적받기
-              </button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
       <div className="bg-[#FFFFFF99] overflow-hidden py-[1.75rem]  w-full relative">
         <div className="  flex items-center animate-scroll gap-x-[3.25rem]  whitespace-nowrap w-max ">
-          {Imagelogs.map((image, index) =>
-            image.TwoImages ? (
-              <Link
-                key={index}
-                href={image.link.trim()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex gap-x-0 "
-              >
-                {image.src1 && (
-                  <Image
-                    src={image.src1}
-                    alt={`${image.alt} - 1`}
-                    width={image.width}
-                    height={image.height}
-                    className={image.className}
-                  />
-                )}
-                {image.src2 && (
-                  <Image
-                    src={image.src2}
-                    alt={`${image.alt} - 2`}
-                    width={image.width}
-                    height={image.height}
-                    className={image.className}
-                  />
-                )}
-              </Link>
-            ) : image.src ? (
-              <Link
-                key={index}
-                href={image.link.trim()}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ImageCard
-                  src={image.src}
-                  alt={image.alt}
-                  link={image.link}
-                  width={image.width}
-                  height={image.height}
-                  className={image.className}
-                />
-              </Link>
-            ) : null
-          )}
+          {Imagelogs.map((image, index) => (
+            <Link
+              key={index}
+              href={image.link.trim()}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ImageCard
+                src={image.src}
+                alt={image.alt}
+                link={image.link}
+                width={image.width}
+                height={image.height}
+                className={image.className}
+              />
+            </Link>
+          ))}
         </div>
       </div>
-      {/* <div className="bg-[#FFFFFF99] overflow-hidden py-[1.75rem] w-full relative">
-        <div className="flex animate-scroll space-x-[3.25rem] whitespace-nowrap w-max">
-          {[...Imagelogs, ...Imagelogs].map((image, index) =>
-            image.TwoImages ? (
-              <Link
-                key={index}
-                href={image.link.trim()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex gap-x-0 flex-shrink-0"
-              >
-                {image.src1 && (
-                  <Image
-                    src={image.src1}
-                    alt={`${image.alt} - 1`}
-                    width={image.width}
-                    height={image.height}
-                    className={image.className}
-                  />
-                )}
-                {image.src2 && (
-                  <Image
-                    src={image.src2}
-                    alt={`${image.alt} - 2`}
-                    width={image.width}
-                    height={image.height}
-                    className={image.className}
-                  />
-                )}
-              </Link>
-            ) : image.src ? (
-              <Link
-                key={index}
-                href={image.link.trim()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-shrink-0"
-              >
-                <ImageCard
-                  src={image.src}
-                  alt={image.alt}
-                  link={image.link}
-                  width={image.width}
-                  height={image.height}
-                  className={image.className}
-                />
-              </Link>
-            ) : null
-          )}
-        </div>
-      </div> */}
     </div>
   );
 }

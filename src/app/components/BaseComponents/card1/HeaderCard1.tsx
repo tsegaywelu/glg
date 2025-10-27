@@ -25,7 +25,7 @@ const HeaderCard1 = ({
       >
         {buttonText}
       </div>
-      <div className="">
+      <div className="text-center">
         {/* <span className="text-[1.25rem] font-normal text-[#FFFFFF] text-center">
           {headerText}
         </span>

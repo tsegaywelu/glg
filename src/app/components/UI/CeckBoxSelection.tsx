@@ -25,14 +25,17 @@ const CeckBoxSelection = ({
     console.log(`Question ${questionNumber} selected:`, selectedItems);
   };
   return (
-    <div className="flex items-center gap-[1.25rem]" onClick={onToggle}>
+    <div
+      className="flex items-center gap-[1.25rem] cursor-pointer"
+      onClick={onToggle}
+    >
       <CheckIcon checked={isSelected} />
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-y-1  ">
           <p className="text-[1.25rem] font-bold text-[#000]">{titel}</p>
           <p className="text-[1rem] font-normal text-[#000]">{Totalwon}~</p>
         </div>
-        <div className="flex gap-x-3">
+        <div className="flex gap-x-3 cursor-pointer">
           {QuestionNumber === "Question1" &&
             ButtonTexts.map((text, index) => (
               <Button key={index} ButtonText={text} />

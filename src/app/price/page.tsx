@@ -13,7 +13,7 @@ const page = () => {
           <span className="font-bold"> 3일간 서비스 무료</span>
         </div>
       </div>
-      <div className="px-10 md:px-[5rem] lg:px-[15rem]">
+      <div className="px-10 md:px-[5rem] 2xl:px-[15rem]">
         <PriceCard />
         <Question />
         <Footer />

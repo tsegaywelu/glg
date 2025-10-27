@@ -1,8 +1,21 @@
+import { link } from "fs";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
-  const FirstText = ["개발 외주", "요금 정책", "서비스 소개서", "외주 꿀팁"];
-  const SecondText = ["Sherry Boothhub", "서비스 소개서"];
+  const FirstText = [
+    { text: "개발 외주", link: "/" },
+    { text: "요금 정책", link: "/price" },
+    { text: "서비스 소개서", link: "/pdf/portfolio.pdf" },
+    {
+      text: "외주 꿀팁",
+      link: "https://blog.naver.com/NBlogTop.naver?blogId=glitch-ai",
+    },
+  ];
+  const SecondText = [
+    { text: "Sherry Boothhub", link: "https://sherry.gg" },
+    { text: "서비스 소개서", link: "https://sherryboothhub.com" },
+  ];
   const ThereedText = [
     "대표이사 : 유동률",
     "본사 : 대구광역시 동구 장등로 76 407호",
@@ -41,7 +54,7 @@ const Footer = () => {
           <div className="text-white font-normal text-5">help@sweech.io</div>
         </div>
         <div className="flex gap-[2.44rem] ">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 ">
             <Image
               src="/images/tempLogo.png"
               width={79}
@@ -51,9 +64,13 @@ const Footer = () => {
             />
             {FirstText.map((text, index) => {
               return (
-                <div className="flex gap-4 items-center" key={index}>
+                <Link
+                  href={text.link}
+                  className="flex gap-4 items-center"
+                  key={index}
+                >
                   <p className="text-[1.25rem] text-[#71717A] font-normal">
-                    {text}
+                    {text.text}
                   </p>
                   <Image
                     src="/images/footerImages/BigArrow.png"
@@ -62,7 +79,7 @@ const Footer = () => {
                     alt="logo"
                     className="w-[0.5rem] h-[0.875rem]"
                   />
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -77,9 +94,14 @@ const Footer = () => {
             />
             {SecondText.map((text, index) => {
               return (
-                <div className="flex gap-4 items-center" key={index}>
+                <a
+                  href={text.link}
+                  target="_blank"
+                  className="flex gap-4 items-center"
+                  key={index}
+                >
                   <p className="text-[1.25rem] text-[#71717A] font-normal">
-                    {text}
+                    {text.text}
                   </p>
                   <Image
                     src="/images/footerImages/BigArrow.png"
@@ -88,7 +110,7 @@ const Footer = () => {
                     alt="logo"
                     className="w-[0.5rem] h-[0.875rem]"
                   />
-                </div>
+                </a>
               );
             })}
           </div>

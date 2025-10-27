@@ -3,7 +3,7 @@ const CheckIcon = ({ checked }: { checked: boolean }) => {
     <span
       className={` ${
         checked ? "bg-primary" : "bg-[#FF7B004D]"
-      } p-2 rounded-full inline-flex items-center justify-center shadow-md`}
+      } p-2 rounded-full inline-flex items-center justify-center shadow-md cursor-pointer`}
     >
       <svg
         width="24"

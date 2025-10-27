@@ -51,7 +51,7 @@ body {
   overflow: hidden;
 }
 /* Responsive font sizing */
-@media (min-width: 1920px) {
+/* @media (min-width: 1920px) {
   html {
     font-size: 18px;
   }
@@ -77,10 +77,12 @@ body {
 
 @media (max-width: 1279px) {
   html {
-    font-size: 14px;
+    font-size: 11px;
   }
+} */
+html {
+  font-size: clamp(45%, calc(45% + (10 * (100vw - 320px) / (624 - 320))), 100%);
 }
-
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -98,4 +100,10 @@ body {
 
 .animate-scroll:hover {
   animation-play-state: paused;
+}
+
+/* lets made reponsive padding */
+.responsive-padding {
+  padding-left: 15rem;
+  padding-right: 15rem;
 }

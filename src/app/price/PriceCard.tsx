@@ -1,9 +1,52 @@
 "use client";
+import { useMemo, useState } from "react";
 import Input from "../components/BaseComponents/Input";
 import CheckIcon from "../components/Icons/CheckIcon";
 const PriceCard = () => {
+  const rates = {
+    planner: 300000,
+    designer: 300000,
+    webDev: 120000,
+    mobileDev: 120000,
+    backendDev: 120000,
+    infraDev: 350000,
+  };
+
+  const [days, setDays] = useState({
+    planner: "",
+    designer: "",
+    webDev: "",
+    mobileDev: "",
+    backendDev: "",
+    infraDev: "",
+  });
+  const handleDaysChange = (role: keyof typeof days, value: string) => {
+    // Allow only digits
+    const numericValue = value.replace(/[^0-9]/g, "");
+    setDays((prev) => ({
+      ...prev,
+      [role]: numericValue,
+    }));
+  };
+  // Compute costs using useMemo for performance
+  const { laborCost, techFee, total } = useMemo(() => {
+    const labor =
+      (Number(days.planner) || 0) * rates.planner +
+      (Number(days.designer) || 0) * rates.designer +
+      (Number(days.webDev) || 0) * rates.webDev +
+      (Number(days.mobileDev) || 0) * rates.mobileDev +
+      (Number(days.backendDev) || 0) * rates.backendDev +
+      (Number(days.infraDev) || 0) * rates.infraDev;
+
+    const tech = Math.round(labor * 0.3);
+    return {
+      laborCost: labor.toLocaleString(),
+      techFee: tech.toLocaleString(),
+      total: (labor + tech).toLocaleString(),
+    };
+  }, [days]);
   return (
-    <div className=" py-[5rem] space-y-[5rem]">
+    <div className=" py-[5rem] space-y-[5rem] max-w-[57.1875rem] mx-auto ">
       <div className="space-y-[1rem]">
         <div className="text-5 font-normal text-white text-center">
           <div>서비스 금액은 합리적이게</div>
@@ -21,7 +64,7 @@ const PriceCard = () => {
             <div className="flex flex-col gap-y-2 ">
               <div className="flex items-center gap-x-10 md:gap-x-4">
                 <div>
-                  <CheckIcon />
+                  <CheckIcon checked={days.planner !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
                   <p className="text-[1.25rem] text-white font-normal">
@@ -41,7 +84,15 @@ const PriceCard = () => {
                 300,000원 / 일
               </div>
               <div>
-                <Input placeholder="숫자만 입력" label="일" id="inputpriece1" />
+                <Input
+                  placeholder="숫자만 입력"
+                  label="일"
+                  id="inputpriece1"
+                  value={days.planner}
+                  onChange={(value) =>
+                    handleDaysChange("planner", value.replace(/[^0-9]/g, ""))
+                  }
+                />
               </div>
             </div>
           </div>
@@ -49,7 +100,7 @@ const PriceCard = () => {
             <div className="flex flex-col gap-y-2 ">
               <div className="flex items-center gap-x-10 md:gap-x-4">
                 <div>
-                  <CheckIcon />
+                  <CheckIcon checked={days.designer !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
                   <p className="text-[1.25rem] text-white font-normal">
@@ -69,7 +120,15 @@ const PriceCard = () => {
                 300,000원 / 일
               </div>
               <div>
-                <Input placeholder="숫자만 입력" label="일" id="inputpriece2" />
+                <Input
+                  placeholder="숫자만 입력"
+                  label="일"
+                  id="inputpriece2"
+                  value={days.designer}
+                  onChange={(value) =>
+                    handleDaysChange("designer", value.replace(/[^0-9]/g, ""))
+                  }
+                />
               </div>
             </div>
           </div>
@@ -77,7 +136,7 @@ const PriceCard = () => {
             <div className="flex flex-col gap-y-2 ">
               <div className="flex items-center gap-x-10 md:gap-x-4">
                 <div>
-                  <CheckIcon />
+                  <CheckIcon checked={days.webDev !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
                   <p className="text-[1.25rem] text-white font-normal">
@@ -97,7 +156,15 @@ const PriceCard = () => {
                 120,000원~ / 일
               </div>
               <div>
-                <Input placeholder="숫자만 입력" label="일" id="inputpriece3" />
+                <Input
+                  placeholder="숫자만 입력"
+                  label="일"
+                  id="inputpriece3"
+                  value={days.webDev}
+                  onChange={(value) =>
+                    handleDaysChange("webDev", value.replace(/[^0-9]/g, ""))
+                  }
+                />
               </div>
             </div>
           </div>
@@ -105,7 +172,7 @@ const PriceCard = () => {
             <div className="flex flex-col gap-y-2 ">
               <div className="flex items-center gap-x-10 md:gap-x-4">
                 <div>
-                  <CheckIcon />
+                  <CheckIcon checked={days.mobileDev !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
                   <p className="text-[1.25rem] text-white font-normal">
@@ -125,7 +192,15 @@ const PriceCard = () => {
                 120,000원~ / 일
               </div>
               <div>
-                <Input placeholder="숫자만 입력" label="일" id="inputpriece4" />
+                <Input
+                  placeholder="숫자만 입력"
+                  label="일"
+                  id="inputpriece4"
+                  value={days.mobileDev}
+                  onChange={(value) =>
+                    handleDaysChange("mobileDev", value.replace(/[^0-9]/g, ""))
+                  }
+                />
               </div>
             </div>
           </div>
@@ -133,7 +208,7 @@ const PriceCard = () => {
             <div className="flex flex-col gap-y-2 ">
               <div className="flex items-center gap-x-10 md:gap-x-4">
                 <div>
-                  <CheckIcon />
+                  <CheckIcon checked={days.backendDev !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
                   <p className="text-[1.25rem] text-white font-normal">
@@ -153,7 +228,15 @@ const PriceCard = () => {
                 120,000원~ / 일
               </div>
               <div>
-                <Input placeholder="숫자만 입력" label="일" id="inputpriece5" />
+                <Input
+                  placeholder="숫자만 입력"
+                  label="일"
+                  id="inputpriece5"
+                  value={days.backendDev}
+                  onChange={(value) =>
+                    handleDaysChange("backendDev", value.replace(/[^0-9]/g, ""))
+                  }
+                />
               </div>
             </div>
           </div>
@@ -162,7 +245,7 @@ const PriceCard = () => {
             <div className="flex flex-col gap-y-2 ">
               <div className="flex items-center gap-x-10 md:gap-x-4">
                 <div>
-                  <CheckIcon />
+                  <CheckIcon checked={days.infraDev !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
                   <p className="text-[1.25rem] text-white font-normal">
@@ -183,7 +266,15 @@ const PriceCard = () => {
                 350,000원 / 일
               </div>
               <div>
-                <Input placeholder="숫자만 입력" label="일" id="inputpriece6" />
+                <Input
+                  placeholder="숫자만 입력"
+                  label="일"
+                  id="inputpriece6"
+                  value={days.infraDev}
+                  onChange={(value) =>
+                    handleDaysChange("infraDev", value.replace(/[^0-9]/g, ""))
+                  }
+                />
               </div>
             </div>
           </div>
@@ -195,8 +286,7 @@ const PriceCard = () => {
               인건비 예상
             </div>
             <div className="text-[1.25rem] font-bold text-white">
-              {/* //I will display valu here */}
-              0원
+              {laborCost}원
             </div>
           </div>
           <div className=" flex justify-between items-center ">
@@ -205,7 +295,7 @@ const PriceCard = () => {
             </div>
             <div className="text-[1.25rem] font-bold text-white">
               {/* //I will display valu here */}
-              0원
+              {techFee}원
             </div>
           </div>
           <div className=" flex justify-between items-center ">
@@ -214,7 +304,7 @@ const PriceCard = () => {
             </div>
             <div className="text-[1.25rem] font-bold text-white">
               {/* //I will display valu here */}
-              0원
+              {total}원
             </div>
           </div>
         </div>

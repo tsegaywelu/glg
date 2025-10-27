@@ -44,16 +44,28 @@ const Card2 = () => {
   return (
     <div className="  py-[5rem] space-y-[5rem] ">
       <HeaderCard2 />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {AllImages.map((ImageURL, index) => (
-          <BodyCard2
-            key={index}
-            ImageURL={ImageURL.src}
-            buttonText={ImageURL.ButtonText}
-            MYClassName={ImageURL.backgroundColor}
-            buttonBackground={ImageURL.buttonBackground}
-          />
-        ))}
+      <div className="space-y-[2.5rem]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {AllImages.map((ImageURL, index) => (
+            <BodyCard2
+              key={index}
+              ImageURL={ImageURL.src}
+              buttonText={ImageURL.ButtonText}
+              MYClassName={ImageURL.backgroundColor}
+              buttonBackground={ImageURL.buttonBackground}
+            />
+          ))}
+        </div>
+        <div className="flex justify-center">
+          <a
+            href="/pdf/portfolio.pdf"
+            download
+            className="px-[1.5rem] py-[0.75rem] border-[0.125rem] border-primary rounded-full text-[1rem] font-bold text-white"
+          >
+            {" "}
+            더 많은 포트폴리오 보기
+          </a>
+        </div>
       </div>
     </div>
   );

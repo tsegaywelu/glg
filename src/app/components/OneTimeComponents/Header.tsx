@@ -27,8 +27,12 @@ export default function Header() {
   const navItems = [
     { name: "개발 외주", href: "/" },
     { name: "요금 정책", href: "/price" },
-    { name: "서비스 소개서", href: "/letter" },
-    { name: "외주 꿀팁", href: "/tips" },
+    { name: "서비스 소개서", href: "/pdf/portfolio.pdf" },
+    {
+      name: "외주 꿀팁",
+      href: "https://blog.naver.com/NBlogTop.naver?blogId=glitch-ai",
+      DontAppend: true,
+    },
   ];
 
   return (
@@ -59,17 +63,22 @@ export default function Header() {
                 </a>
               ))}
 
-              <div className=" bg-white w-[4.375rem] h-[2.5rem] rounded-full flex gap-x-1 px-[0.44rem] py-[0.38rem]  cursor-pointer">
+              <div
+                className=" bg-white w-[4.375rem] h-[2.5rem] rounded-full flex gap-x-1 px-[0.44rem] py-[0.38rem]  cursor-pointer"
+                onClick={toggleLanguage}
+              >
                 <button>
                   <Image
                     src="/images/Rotate.png"
                     alt="rotate"
                     width={24}
                     height={24}
-                    className="w-[1.5rem] h-[1.5rem] cursor-pointer"
+                    className={`w-[1.5rem] h-[1.5rem] cursor-pointer transform transition-transform duration-300 ease-in-out ${
+                      Language === "KR" ? "rotate-180 " : ""
+                    }`}
                   />
                 </button>
-                <button onClick={toggleLanguage}>
+                <button>
                   <Image
                     src={
                       Language === "KR"
@@ -114,14 +123,18 @@ export default function Header() {
                   isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
                 }`}
               ></span>
+              {/* <Image
+                src="/Hamburger.png"
+                alt="Hamburger"
+                width={40}
+                height={40}
+                className="w-[2.5rem] h-[2.5rem] cursor-pointer"
+              /> */}
             </button>
           </div>
         </div>
       </div>
-      {/* top bar */}
-      {/* <div className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem] font-bold text-center">
-        지금 문의하면 개발자 3일 무료
-      </div> */}
+
       {/* mobile menu overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-[#09090B] z-40 xl:hidden mt-20 pt-20 flex flex-col items-center space-y-[5rem]">
@@ -146,7 +159,9 @@ export default function Header() {
                 alt="rotate"
                 width={24}
                 height={24}
-                className="w-[1.5rem] h-[1.5rem] cursor-pointer"
+                className={`w-[1.5rem] h-[1.5rem] cursor-pointer transform transition-transform duration-300 ease-in-out ${
+                  Language === "KR" ? "rotate-180" : ""
+                }`}
               />
             </button>
             <button onClick={toggleLanguage}>

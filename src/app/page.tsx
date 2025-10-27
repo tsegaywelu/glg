@@ -12,7 +12,7 @@ import HeroSection from "./components/OneTimeComponents/HeroSection";
 export default function Home() {
   return (
     <div className="overflow-y-auto bg-[#09090B]">
-      <main className="flex flex-col min-h-dvh  ">
+      <main className="flex flex-col   ">
         <div>
           <Header />
           <div className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem] font-bold text-center">
@@ -22,12 +22,14 @@ export default function Home() {
         </div>
         <HeroSection />
       </main>
-      <div className="px-[5rem] lg:px-[15rem]">
+      <div className="px-[5rem] 2xl:px-[15rem] max-w-[108rem] mx-auto">
         <Card1 />
         <Card2 />
         <Card3 />
         <Card4 />
         <Question />
+      </div>
+      <div className="px-[5rem] 2xl:px-[15rem]">
         <Footer />
       </div>
     </div>
