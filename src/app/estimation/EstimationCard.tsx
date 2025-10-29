@@ -8,6 +8,7 @@ import GiveMeQuestion from "../components/UI/GiveMeQuestion";
 import QuestionWithCheckBox from "../components/UI/QuestionWithCheckBox";
 import TextArea from "../components/UI/TextArea";
 import { FormData } from "../Type";
+import { showToast } from "../components/toastComponents/showToast";
 const EstimationCard = () => {
   const Button1Texts = ["기획", "디자인", "개발", "배포"];
   const Button2Texts = [
@@ -149,6 +150,20 @@ const EstimationCard = () => {
       return prev;
     });
   };
+  const appCheck =
+    formData.developmentType.mobileApp ||
+    formData.developmentType.webService ||
+    formData.developmentType.homepage;
+  const Jobtype =
+    formData.developmentStatus.newDevelopment ||
+    formData.developmentStatus.maintenance;
+  const ButtonValidation =
+    formData.companyName &&
+    formData.contactPerson &&
+    formData.email &&
+    formData.budget &&
+    appCheck &&
+    Jobtype;
   // Handler for Q3: Development Status (radio buttons - mutually exclusive)
   const handleDevelopmentStatusChange = (
     type: keyof typeof formData.developmentStatus
@@ -177,7 +192,7 @@ const EstimationCard = () => {
 
     // Validation: budget is required
     if (!hasDevType || !hasDevStatus || !formData.budget) {
-      alert("Please fill all required forms"); // "Please answer all questions."
+      showToast("error", <div>"Please fill all forms"</div>);
       return;
     }
 
@@ -223,8 +238,16 @@ const EstimationCard = () => {
       });
       const result = await response.json();
       if (response.ok) {
-        alert("email has been sent!");
-        // Optionally reset form
+        showToast(
+          "success",
+          <div>
+            {/* <div>견적 발송에 실패했습니다.</div>
+            <div>steven@sweech.io로 문의해주세요.</div> */}
+
+            <div> 견적 문의가 발송되었습니다. 영업일 기준 2일 내</div>
+            <div>담당자가 연락드릴 예정입니다.</div>
+          </div>
+        );
         setFormData({
           companyName: "",
           contactPerson: "",
@@ -251,7 +274,16 @@ const EstimationCard = () => {
       }
     } catch (error) {
       console.error("Submission error:", error);
-      alert("Submission failed. Please try again.");
+      showToast(
+        "error",
+        <div>
+          <div>견적 발송에 실패했습니다.</div>
+          <div>steven@sweech.io로 문의해주세요.</div>
+
+          {/* <div> 견적 문의가 발송되었습니다. 영업일 기준 2일 내</div>
+        <div>담당자가 연락드릴 예정입니다.</div> */}
+        </div>
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -319,7 +351,7 @@ const EstimationCard = () => {
                 QuestionNmeber="Q2"
                 QuestionText="개발하려는 것이 어떤건가요?"
               />
-              <div className="flex flex-col gap-y-[1.25rem] md:grid md:grid-cols-3  ">
+              <div className="flex flex-col gap-y-[1.25rem] md:grid xl:grid-cols-3  ">
                 <CeckBoxSelection
                   ButtonTexts={Button1Texts}
                   titel="홈페이지"
@@ -351,7 +383,7 @@ const EstimationCard = () => {
                 QuestionNmeber="Q3"
                 QuestionText="기존에 개발 된 것이 있나요?"
               />
-              <div className="space-y-[1.25rem] md:space-y-[0rem] md:grid md:grid-cols-3  ">
+              <div className="space-y-[1.25rem] xl:space-y-[0rem] xl:grid xl:grid-cols-3  ">
                 <QuestionWithCheckBox
                   QuestionText="신규 개발"
                   checked={formData.developmentStatus.newDevelopment}
@@ -412,7 +444,7 @@ const EstimationCard = () => {
                     QuestionText="현재 기획 상태는 어떤가요?"
                     NoStar
                   />
-                  <div className="space-y-[1.25rem] md:space-y-[0rem] md:grid md:grid-cols-3 ">
+                  <div className="space-y-[1.25rem] xl:space-y-[0rem] xl:grid xl:grid-cols-3 ">
                     <QuestionWithCheckBox
                       QuestionText="아이디어만 있음"
                       checked={formData.planningStatus.onlyIdea}
@@ -486,7 +518,7 @@ const EstimationCard = () => {
                   />
                   <TextArea
                     numOfrow={6}
-                    placeholder={`- Flutter
+                    placeholder={`-Flutter
                                     - NestJS
                                     - Typescript
                                     - NextJS`}
@@ -514,9 +546,9 @@ const EstimationCard = () => {
           ) : (
             <div className="flex items-center gap-x-[1rem]">
               <button
-                className="text-white disabled:opacity-20  text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full"
+                className="text-white disabled:opacity-[30%]  text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full"
                 onClick={handleSubmit}
-                disabled={isSubmitting}
+                disabled={isSubmitting || !ButtonValidation}
               >
                 여기까지 작성 후 상담받기
               </button>

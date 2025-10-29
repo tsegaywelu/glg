@@ -1,4 +1,3 @@
-import { link } from "fs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,7 +13,7 @@ const Footer = () => {
   ];
   const SecondText = [
     { text: "Sherry Boothhub", link: "https://sherry.gg" },
-    { text: "서비스 소개서", link: "https://sherryboothhub.com" },
+    { text: "서비스 소개서", link: "/pdf/sherry.pdf" },
   ];
   const ThereedText = [
     "대표이사 : 유동률",
@@ -23,6 +22,7 @@ const Footer = () => {
     "사업자등록번호 : 887-86-03669",
     "통신판매업신고 : 2025-대구동구-0769",
   ];
+
   return (
     <footer className=" font-pretendard  py-[5rem]   space-y-[5rem]">
       <div className="flex flex-col gap-y-[5rem] md:flex-row md:justify-between ">

@@ -2,6 +2,7 @@
 import { useMemo, useState } from "react";
 import Input from "../components/BaseComponents/Input";
 import CheckIcon from "../components/Icons/CheckIcon";
+// import { showToast } from "../components/toastComponents/showToast";
 const PriceCard = () => {
   const rates = {
     planner: 300000,
@@ -45,6 +46,20 @@ const PriceCard = () => {
       total: (labor + tech).toLocaleString(),
     };
   }, [days]);
+  // const showText = () => {
+  //   console.log("I am runing");
+
+  //   showToast(
+  //     "error",
+  //     <div>
+  //       <div>견적 발송에 실패했습니다.</div>
+  //       <div>steven@sweech.io로 문의해주세요.</div>
+
+  //       {/* <div> 견적 문의가 발송되었습니다. 영업일 기준 2일 내</div>
+  //       <div>담당자가 연락드릴 예정입니다.</div> */}
+  //     </div>
+  //   );
+  // };
   return (
     <div className=" py-[5rem] space-y-[5rem] max-w-[57.1875rem] mx-auto ">
       <div className="space-y-[1rem]">

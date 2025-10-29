@@ -1,5 +1,3 @@
-// app/page.tsx
-
 import Card1 from "./components/BaseComponents/card1/Card1";
 import Card2 from "./components/BaseComponents/card2/Card2";
 import Card3 from "./components/BaseComponents/card3/Card3";

@@ -9,6 +9,7 @@ import QR from "./QR";
 import WhiteInput from "./WiteInput";
 // import { FormData } from "../../../Type";
 import { useRouter } from "next/navigation";
+import { showToast } from "../../toastComponents/showToast";
 const Question = () => {
   const router = useRouter();
   const Button1Texts = ["기획", "디자인", "개발", "배포"];
@@ -127,7 +128,7 @@ const Question = () => {
 
     // Validation: budget is required
     if (!hasDevType || !hasDevStatus || !formData.budget) {
-      alert("Please fill all forms");
+      showToast("error", <div>"Please fill all forms"</div>);
       return;
     }
 
@@ -151,10 +152,18 @@ const Question = () => {
 
     router.push(`/estimation?${params.toString()}`);
   };
+  const appCheck =
+    formData.developmentType.mobileApp ||
+    formData.developmentType.webService ||
+    formData.developmentType.homepage;
+  const Jobtype =
+    formData.developmentStatus.newDevelopment ||
+    formData.developmentStatus.maintenance;
+  const ButtonValidation = formData.budget && appCheck && Jobtype;
   return (
     <div className=" w-full  py-[5rem] space-y-10">
       <QestionHeader />
-      <div className=" w-full  lg:max-w-[57.1875rem] mx-auto flex  flex-col items-center lg:flex-row lg:items-start lg:justify-center gap-10 ">
+      <div className=" w-full  lg:max-w-[59.1875rem] mx-auto flex  flex-col items-center lg:flex-row lg:items-start lg:justify-center gap-10 ">
         <div className="w-full bg-white p-10 space-y-[2.5rem] ">
           {/* <GiveMeQuestion QuestionNmeber="" QuestionText="" /> */}
           {/* <Button ButtonText="" /> */}
@@ -234,8 +243,9 @@ const Question = () => {
             </div>
           </div>
           <button
-            className="text-white text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full"
+            className=" disabled:opacity-[30%] text-white text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full"
             onClick={handleNavigation}
+            disabled={!ButtonValidation}
           >
             빠른 상담받기
           </button>

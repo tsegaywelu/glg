@@ -207,7 +207,7 @@ export default function HeroSection() {
         </div>
       </section>
       <div className="bg-[#FFFFFF99] overflow-hidden py-[1.75rem]  w-full relative">
-        <div className="  flex items-center animate-scroll gap-x-[3.25rem]  whitespace-nowrap w-max ">
+        <div className="  flex items-center animate-scroll gap-x-[3.25rem]  whitespace-nowrap  ">
           {Imagelogs.map((image, index) => (
             <Link
               key={index}

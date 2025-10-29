@@ -101,3 +101,220 @@ html {
 .animate-scroll:hover {
   animation-play-state: paused;
 }
+/* CKE editor  */
+
+.ck-editor-wrapper {
+  height: 100%;
+}
+
+.ck-toolbar-container {
+  border: 0.0625rem solid #e0e0e0;
+  border-radius: 0 0 0 0;
+  background-color: white;
+}
+
+.ck-editor-wrapper.editor-disabled .ck-toolbar {
+  background-color: #f9f9f9 !important;
+}
+
+/* Editor Content Area Styles */
+.ck-editor__editable {
+  border: 0.0625rem solid #e0e0e0 !important;
+  border-top: none !important;
+  /* border-radius: 0 0 0.625rem 0.625rem !important;
+  max-height: calc(100vh - 19.8rem); */
+  color: #000 !important;
+  font-weight: bold;
+  height: calc(100vh - 19.8rem) !important;
+
+  padding: 0.85rem 1.625rem 2.25rem !important;
+  overflow-y: auto;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif !important;
+  background: white !important;
+}
+.editor-app-update .ck-editor__editable {
+  max-height: calc(100vh - 20.1rem) !important;
+  height: calc(100vh - 20.1rem) !important;
+  border-radius: 0 0 0.625rem 0.625rem !important;
+}
+
+/* Banner Editor — shorter */
+.editor-banner .ck-editor__editable {
+  max-height: calc(100vh - 19.8rem) !important;
+  height: calc(100vh - 19.8rem) !important;
+  border-radius: 0 0 0.625rem 0.625rem !important;
+}
+
+.editor-disabled .ck-editor__editable {
+  background-color: #f9f9f9 !important;
+}
+
+/* Typography Styles */
+.ck-editor__editable p,
+.ck-editor__editable .paragraph {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  margin: 1em 0 !important;
+}
+
+.ck-editor__editable h1,
+.ck-editor__editable .ck-heading_heading1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 1em 0;
+  color: #000;
+}
+
+.ck-editor__editable h2,
+.ck-editor__editable .ck-heading_heading2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1em 0;
+  color: #1a1a1a;
+}
+
+/* List Styles */
+.ck-editor__editable ul,
+.ck-content-rendered ul {
+  list-style-type: disc;
+  margin: 1em 0;
+  padding-left: 2.5rem;
+}
+
+.ck-editor__editable ol,
+.ck-content-rendered ol {
+  list-style-type: decimal;
+  margin: 1em 0;
+  padding-left: 2.5rem;
+}
+
+.ck-editor__editable li,
+.ck-content-rendered li {
+  display: list-item;
+  margin-bottom: 0.5em;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+/* Blockquote Styles */
+.ck-editor__editable blockquote {
+  border-left: 0.25rem solid #007bff;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  background-color: #f9f9f9;
+  font-style: italic;
+}
+
+/* Placeholder Style */
+.ck-placeholder::before {
+  color: #c0c0c0 !important;
+  font-size: 1.25rem !important;
+}
+
+.ck.ck-content.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+  border: 0.0625rem solid #000 !important;
+  outline: none !important;
+  transition: border 0.2s ease;
+}
+
+.ck-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Image container */
+.ck-content .image {
+  display: table;
+  clear: both;
+  text-align: center;
+  margin: 1em auto;
+  max-width: 100%;
+}
+
+/* Alignment classes */
+.ck-content .image-style-align-left {
+  float: left;
+  margin-right: 1.5em;
+  max-width: 50%;
+}
+
+.ck-content .image-style-align-right {
+  float: right;
+  margin-left: 1.5em;
+  max-width: 50%;
+}
+
+.ck-content .image-style-align-center,
+.ck-content {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  max-width: 100%;
+}
+
+.ck-content .image-style-block {
+  width: 100%;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .ck-content .image-style-align-left,
+  .ck-content .image-style-align-right {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+}
+
+.ck-content {
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 1em auto !important;
+  }
+
+  .image {
+    display: block !important;
+    max-width: 100% !important;
+    margin: 1em auto !important;
+    clear: both !important;
+    text-align: center;
+  }
+
+  .image-style-align-left {
+    float: left !important;
+    margin: 1em 1.5em 1em 0 !important;
+    max-width: 50% !important;
+  }
+
+  .image-style-align-right {
+    float: right !important;
+    margin: 1em 0 1em 1.5em !important;
+    max-width: 50% !important;
+  }
+
+  .image-style-align-center {
+    display: block !important;
+    margin: 1em auto !important;
+    max-width: 100% !important;
+  }
+
+  .image-style-block {
+    width: 100% !important;
+  }
+
+  @media (max-width: 768px) {
+    .image-style-align-left,
+    .image-style-align-right {
+      float: none !important;
+      margin: 1em auto !important;
+      max-width: 100% !important;
+    }
+  }
+}

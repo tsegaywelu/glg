@@ -137,46 +137,53 @@ export default function Header() {
 
       {/* mobile menu overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-[#09090B] z-40 xl:hidden mt-20 pt-20 flex flex-col items-center space-y-[5rem]">
-          <nav className="flex flex-col space-y-[5rem] text-white">
-            {navItems.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                className={` ${
-                  item.href === pathName ? "text-primary" : "text-white"
-                } text-lg hover:text-primary transition-colors`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
-          <div className=" bg-white w-[4.375rem] h-[2.5rem] rounded-full flex gap-x-1 px-[0.44rem] py-[0.38rem]  cursor-pointer">
-            <button>
-              <Image
-                src="/images/Rotate.png"
-                alt="rotate"
-                width={24}
-                height={24}
-                className={`w-[1.5rem] h-[1.5rem] cursor-pointer transform transition-transform duration-300 ease-in-out ${
-                  Language === "KR" ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            <button onClick={toggleLanguage}>
-              <Image
-                src={
-                  Language === "KR"
-                    ? "/images/English.png"
-                    : "/images/Korea.png"
-                }
-                alt="Translate"
-                width={28}
-                height={28}
-                className="w-[1.75rem] h-[1.75rem] cursor-pointer"
-              />
-            </button>
+        <div className="h-fit fixed inset-0 bg-[#09090B] z-40 xl:hidden mt-24 pt-26 space-y-[80px] ">
+          <div className="flex flex-col items-center justify-center space-y-[5rem] ">
+            <nav className="flex flex-col space-y-[5rem] text-white items-center justify-center">
+              {navItems.map((item, index) => (
+                <a
+                  key={index}
+                  href={item.href}
+                  className={` ${
+                    item.href === pathName ? "text-primary" : "text-white"
+                  } text-[20px] hover:text-primary transition-colors`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+
+            <div className=" bg-white w-[70px] h-[40px] rounded-full flex gap-x-[4px] px-[7.5px] py-[6.5px]  cursor-pointer">
+              <button>
+                <Image
+                  src="/images/Rotate.png"
+                  alt="rotate"
+                  width={24}
+                  height={24}
+                  className={`w-[24px] h-[24px] cursor-pointer transform transition-transform duration-300 ease-in-out ${
+                    Language === "KR" ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              <button onClick={toggleLanguage}>
+                <Image
+                  src={
+                    Language === "KR"
+                      ? "/images/English.png"
+                      : "/images/Korea.png"
+                  }
+                  alt="Translate"
+                  width={28}
+                  height={28}
+                  className="w-[28px] h-[28px] cursor-pointer"
+                />
+              </button>
+            </div>
+          </div>
+          <div className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem] font-bold text-center">
+            <span className="font normal">지금 문의하면</span>
+            <span className="font-bold"> 개발자 3일 무료</span>
           </div>
         </div>
       )}
