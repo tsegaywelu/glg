@@ -21,17 +21,17 @@ const Card1 = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2.5rem]  ">
-        <div className="w-full flex flex-col items-center  ">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-[2.5rem] items-stretch content-stretch ">
+        <div className="w-full flex flex-col items-center h-full ">
           <div className="w-full flex-1">
             <HeaderCard1
               textColor="#9FA9FF"
               borderColor="#AFB7FF"
               buttonText="공공기관 E사 "
               bodyText={
-                <div className="text-center ">
-                  <span className="text-[1.25rem] font-normal text-[#FFFFFF] text-center">
-                    이 기능은 핵심이라 꼭 필요 한데...
+                <div className="text-center w-full  text-ellipsis line-clamp-2">
+                  <span className="text-[1.25rem] font-normal text-[#FFFFFF] text-center whitespace-nowrap truncate">
+                    이 기능은 핵심이라 꼭 필요 한데
                   </span>
                   <span className="block text-[1.25rem] font-bold text-[#FFFFFF] text-center ">
                     개발비가 부담스러워요 😅
@@ -44,23 +44,32 @@ const Card1 = () => {
             className="w-[0.75rem] min-h-[2.375rem] h-[2rem] "
             textColor="#AFB7FF"
           />
-          <div className="w-full flex-1">
+          <div className="w-full flex-1 h-full">
             <BodyCard1
               ImageURL="/images/card1Images/frame11.png"
               borderColor="#AFB7FF"
-              Texts="개발자 입장에서 디자인을 정리해소통 비용을 340% 절감"
+              Texts={
+                <div className="">
+                  나한테만 집중하는 개발자와 PM을
+                  <span className="text-primary">
+                    월 260만원~의 합리적인 금액
+                  </span>
+                  으로 이용해보세요.
+                </div>
+              }
               backgroundColor="#AFB7FF29"
+              DonotExpand
             />
           </div>
         </div>
-        <div className="w-full flex flex-col items-center  ">
+        <div className="w-full flex flex-col items-center  h-full ">
           <div className="w-full flex-1">
             <HeaderCard1
               textColor="#FFAFFC"
               borderColor="#FFAFFC"
               buttonText="170만 유저 서비스 J사"
               bodyText={
-                <div className="text-center">
+                <div className="text-center text-ellipsis line-clamp-2">
                   <span className="text-[1.25rem] font-normal text-[#FFFFFF] text-center">
                     개발자가
                   </span>
@@ -82,28 +91,36 @@ const Card1 = () => {
             className="w-[0.75rem] h-[2.375rem] "
             textColor="#FFAFFC"
           />
-          <div className="w-full flex-1">
+          <div className="w-full flex-1 h-full">
             <BodyCard1
               ImageURL="/images/card1Images/frame21.png"
               borderColor="#FFAFFC"
-              Texts="카카오톡, Slack 등 메신저로 자동 내용 트래킹 및 업무 보고"
+              Texts={
+                <div className="">
+                  실시간 모니터링 기능으로 개발자의
+                  <span className="text-primary">
+                    개발 참여 시간, 코드 퀄리티를 매일 모니터링/보고
+                  </span>
+                  하고 있어요.
+                </div>
+              }
               backgroundColor="#FFAFFC29"
             />
           </div>
         </div>
 
-        <div className="w-full flex flex-col items-center ">
+        <div className="w-full flex flex-col items-center h-full ">
           <div className="w-full flex-1">
             <HeaderCard1
               textColor="#FFB8AF"
               borderColor="#FFB8AF"
               buttonText="해외기업 B사"
               bodyText={
-                <div>
-                  <span className="text-[1.25rem] font-normal text-[#FFFFFF] text-center">
-                    개발 속도가 너무 느린거 같아요...
+                <div className="w-full text-ellipsis line-clamp-2 ">
+                  <span className="text-[1.25rem] font-normal text-[#FFFFFF] text-center  ">
+                    개발 속도가 너무 느린거 같아요
                   </span>
-                  <span className="block text-[1.25rem] font-bold text-[#FFFFFF] text-center ">
+                  <span className=" text-[1.25rem] font-bold text-[#FFFFFF] text-center  ">
                     어떻게 빨리 할 수 없을까요 😭
                   </span>
                 </div>
@@ -114,11 +131,19 @@ const Card1 = () => {
             className="w-[0.75rem] h-[2.375rem] "
             textColor="#FFB8AF"
           />
-          <div className="w-full flex-1">
+          <div className="w-full  h-full flex-1">
             <BodyCard1
               ImageURL="/images/card1Images/frame31.png"
               borderColor="#FFB8AF29"
-              Texts="날짜별로 목표를 쪼개어 일정내에 프로젝트가 완료되도록 관리"
+              Texts={
+                <div className="">
+                  전담 PM과 AI 기획자가 실시간으로 개발자를 전담마크해
+                  <span className="text-primary">
+                    개발자의 업무 효율을 극대화
+                  </span>
+                  하고 있어요.
+                </div>
+              }
               backgroundColor="#FFB8AF29"
             />
           </div>

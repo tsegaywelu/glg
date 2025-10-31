@@ -27,11 +27,11 @@ export default function Header() {
   const navItems = [
     { name: "개발 외주", href: "/" },
     { name: "요금 정책", href: "/price" },
-    { name: "서비스 소개서", href: "/pdf/portfolio.pdf" },
+    { name: "서비스 소개서", href: "/pdf/portfolio.pdf", newTab: true },
     {
       name: "외주 꿀팁",
       href: "https://blog.naver.com/NBlogTop.naver?blogId=glitch-ai",
-      DontAppend: true,
+      newTab: true,
     },
   ];
 
@@ -51,17 +51,31 @@ export default function Header() {
           {/* desktop nav */}
           <div className=" flex items-center   gap-x-[2.5rem] ">
             <nav className="hidden xl:flex items-center gap-x-[2.5rem] w-full ">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={` ${
-                    item.href === pathName ? "text-primary" : "text-white"
-                  } hover:text-[#FF7B00] transition-colors text-[1.25rem] font-semibold`}
-                >
-                  {item.name}
-                </a>
-              ))}
+              {navItems.map((item) =>
+                item.newTab ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={` ${
+                      item.href === pathName ? "text-primary" : "text-white"
+                    } hover:text-[#FF7B00] transition-colors text-[1.25rem] font-semibold`}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={` ${
+                      item.href === pathName ? "text-primary" : "text-white"
+                    } hover:text-[#FF7B00] transition-colors text-[1.25rem] font-semibold`}
+                  >
+                    {item.name}
+                  </a>
+                )
+              )}
 
               <div
                 className=" bg-white w-[4.375rem] h-[2.5rem] rounded-full flex gap-x-1 px-[0.44rem] py-[0.38rem]  cursor-pointer"
@@ -137,21 +151,36 @@ export default function Header() {
 
       {/* mobile menu overlay */}
       {isMenuOpen && (
-        <div className="h-fit fixed inset-0 bg-[#09090B] z-40 xl:hidden mt-24 pt-26 space-y-[80px] ">
-          <div className="flex flex-col items-center justify-center space-y-[5rem] ">
+        <div className="h-fit fixed inset-0 bg-[#09090B] z-40 xl:hidden mt-24 pt-26 space-y-[80px] font-pretendard ">
+          <div className="flex flex-col items-center justify-center space-y-[5rem] font-semibold ">
             <nav className="flex flex-col space-y-[5rem] text-white items-center justify-center">
-              {navItems.map((item, index) => (
-                <a
-                  key={index}
-                  href={item.href}
-                  className={` ${
-                    item.href === pathName ? "text-primary" : "text-white"
-                  } text-[20px] hover:text-primary transition-colors`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
+              {navItems.map((item, index) =>
+                item.newTab ? (
+                  <a
+                    key={index}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={` ${
+                      item.href === pathName ? "text-primary" : "text-white"
+                    } text-[20px] hover:text-primary transition-colors`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <a
+                    key={index}
+                    href={item.href}
+                    className={` ${
+                      item.href === pathName ? "text-primary" : "text-white"
+                    } text-[20px] hover:text-primary transition-colors`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                )
+              )}
             </nav>
 
             <div className=" bg-white w-[70px] h-[40px] rounded-full flex gap-x-[4px] px-[7.5px] py-[6.5px]  cursor-pointer">

@@ -5,6 +5,7 @@ type bodyPrpoststype = {
   ImageURL: string;
   borderColor: string;
   backgroundColor?: string;
+  DonotExpand?: boolean;
 };
 
 const BodyCard1 = ({
@@ -12,19 +13,26 @@ const BodyCard1 = ({
   ImageURL,
   borderColor,
   backgroundColor,
+  DonotExpand,
 }: bodyPrpoststype) => {
   // w-[23.1875rem] h-[23.75rem]
   return (
     <div
-      className=" px-[2.5rem] py-[2rem] space-y-5 border rounded-[0.125rem] flex flex-col items-center"
+      className=" px-[2.5rem] py-[2rem] space-y-5 border rounded-[0.125rem] flex flex-col items-center overflow-clip"
       style={{ borderColor, backgroundColor }}
     >
       <img
         src={ImageURL}
         alt="Image preview"
-        className="object-contain w-[18.7708rem] h-[15.625rem]"
+        className="object-fit  w-full h-[15.625rem]"
       />
-      <div className="  text-[1.25rem] font-normal  text-center">{Texts}</div>
+      {/* <div className="w-[18.7708rem]  text-[1.25rem] font-normal  text-center whitespace-nowrap truncate">
+        {Texts}
+      </div> */}
+
+      <div className="w-full text-[1.25rem] font-normal text-center overflow-hidden text-ellipsis line-clamp-3 ">
+        {Texts}
+      </div>
     </div>
   );
 };

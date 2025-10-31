@@ -20,9 +20,9 @@ const BodyCard3 = ({
       <img
         src={ImageURL}
         alt="Image preview"
-        className="object-fit w-[18.1875rem] h-[15.625rem]"
+        className="object-fit w-full h-[15.625rem]"
       />
-      <div className="  text-[1.25rem] font-normal text-white text-center">
+      <div className="  text-[1.25rem] font-normal text-white text-center line-clamp-3">
         {Texts}
       </div>
     </div>

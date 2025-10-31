@@ -28,7 +28,7 @@ const Card3 = () => {
   return (
     <div className="  py-[5rem] space-y-[5rem] ">
       <HeaderCard3 />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[5.5rem]">
+      <div className="grid grid-cols-1  lg:grid-cols-3 gap-[5.5rem]">
         {AllImages.map((image, index) => (
           <div key={index} className="relative">
             <BodyCard3
@@ -40,7 +40,7 @@ const Card3 = () => {
 
             {index !== AllImages.length - 1 && (
               <>
-                <div className="flex md:hidden absolute -bottom-[2.75rem] left-1/2 transform -translate-x-1/2">
+                <div className="flex lg:hidden absolute -bottom-[2.75rem] left-1/2 transform -translate-x-1/2">
                   <img
                     src="/images/card3Images/Arrow.png"
                     alt="arrow"
@@ -48,7 +48,7 @@ const Card3 = () => {
                   />
                 </div>
 
-                <div className="hidden md:flex items-center justify-center absolute top-1/2 -right-[2.75rem] transform -translate-y-1/2">
+                <div className="hidden lg:flex items-center justify-center absolute top-1/2 -right-[2.75rem] transform -translate-y-1/2">
                   <img
                     src="/images/card3Images/Arrow.png"
                     alt="arrow"

@@ -45,7 +45,7 @@ const Card2 = () => {
     <div className="  py-[5rem] space-y-[5rem] ">
       <HeaderCard2 />
       <div className="space-y-[2.5rem]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1  lg:grid-cols-3 gap-5">
           {AllImages.map((ImageURL, index) => (
             <BodyCard2
               key={index}

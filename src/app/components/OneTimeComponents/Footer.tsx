@@ -5,15 +5,24 @@ const Footer = () => {
   const FirstText = [
     { text: "개발 외주", link: "/" },
     { text: "요금 정책", link: "/price" },
-    { text: "서비스 소개서", link: "/pdf/portfolio.pdf" },
+    {
+      text: "서비스 소개서",
+      link: "http://localhost:3000/pdf/portfolio.pdf",
+      newTab: true,
+    },
     {
       text: "외주 꿀팁",
       link: "https://blog.naver.com/NBlogTop.naver?blogId=glitch-ai",
+      newTab: true,
     },
   ];
   const SecondText = [
-    { text: "Sherry Boothhub", link: "https://sherry.gg" },
-    { text: "서비스 소개서", link: "/pdf/sherry.pdf" },
+    { text: "Sherry Boothhub", link: "https://sherry.gg", newTab: true },
+    {
+      text: "서비스 소개서",
+      link: "http://localhost:3000/pdf/sherry.pdf",
+      newTab: true,
+    },
   ];
   const ThereedText = [
     "대표이사 : 유동률",
@@ -63,7 +72,25 @@ const Footer = () => {
               className="w-[4.9375rem] h-[1.25rem]"
             />
             {FirstText.map((text, index) => {
-              return (
+              return text.newTab ? (
+                <a
+                  href={text.link}
+                  target="_blank"
+                  className="flex gap-4 items-center"
+                  key={index}
+                >
+                  <p className="text-[1.25rem] text-[#71717A] font-normal">
+                    {text.text}
+                  </p>
+                  <Image
+                    src="/images/footerImages/BigArrow.png"
+                    width={8}
+                    height={14}
+                    alt="logo"
+                    className="w-[0.5rem] h-[0.875rem]"
+                  />
+                </a>
+              ) : (
                 <Link
                   href={text.link}
                   className="flex gap-4 items-center"
@@ -120,12 +147,12 @@ const Footer = () => {
         <div className="font-semibold text-[1.5rem] text-white">
           스위치 주식회사
         </div>
-        <div className="flex flex-col gap-y-[1.25rem] md:flex-row">
+        <div className="flex flex-col gap-y-[1.25rem] xl:flex-row">
           {ThereedText.map((text, index) => (
-            <div key={index} className="flex md:items-center md:justify-center">
+            <div key={index} className="flex xl:items-center xl:justify-center">
               <span className="font-light text-[1rem] text-white">{text}</span>
               {index < FirstText.length && (
-                <span className="px-[1.25rem] text-[1.25rem] font-normal hidden md:inline-block">
+                <span className="px-[1.25rem] text-[1.25rem] font-normal hidden xl:inline-block">
                   |
                 </span>
               )}

@@ -20,12 +20,12 @@ const HeaderCard1 = ({
       style={{ borderColor: borderColor }}
     >
       <div
-        className={` px-4 py-2 rounded-full border-[0.125rem] text-[1.25rem]  `}
+        className={` px-4 py-2 rounded-full border-[0.125rem] text-[1.25rem]  whitespace-nowrap`}
         style={{ color: textColor, borderColor: textColor }}
       >
         {buttonText}
       </div>
-      <div className="text-center">
+      <div className="text-center  w-full ">
         {/* <span className="text-[1.25rem] font-normal text-[#FFFFFF] text-center">
           {headerText}
         </span>
