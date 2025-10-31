@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Footer from "../components/OneTimeComponents/Footer";
 import Header from "../components/OneTimeComponents/Header";
 import EstimationCard from "./EstimationCard";
@@ -13,7 +14,16 @@ const page = () => {
         </div>
       </div>
       <div className="px-10 md:px-[5rem] 2xl:px-[15rem]">
-        <EstimationCard />
+        {/* <EstimationCard /> */}
+        <Suspense
+          fallback={
+            <div className="text-center text-white py-10">
+              Loading estimation...
+            </div>
+          }
+        >
+          <EstimationCard />
+        </Suspense>
         <Footer />
       </div>
     </div>
