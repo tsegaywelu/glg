@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -30,7 +28,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (NEVER commit secrets!)
+.env
+.env.local
+.env.development.local
+.env.production.local
 .env*
 
 # vercel
@@ -39,3 +41,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Docker — DO NOT commit these (teammates generate locally)
+Dockerfile
+Dockerfile.*
+docker-compose.yaml
+docker-compose.yml
+docker-compose-dev.yaml
+docker-compose-dev.yml

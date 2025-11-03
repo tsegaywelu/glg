@@ -11,7 +11,7 @@ const BoadyCard4 = ({ ImageUrl, Texts }: BoadyCard4Props) => {
         alt="Image"
         className="w-[14.7625rem] h-[14.7625rem] object-fill "
       />
-      <div className="px-[1.25rem] pb-[1.3rem] text-[1.25rem] font-normal text-white">
+      <div className="max-w-[14.7625rem] px-[1.25rem] pb-[1.3rem] text-[1.25rem] font-normal text-white whitespace-nowrap truncate">
         {Texts}
       </div>
     </div>
