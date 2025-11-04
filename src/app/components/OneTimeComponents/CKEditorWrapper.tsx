@@ -1,7 +1,8 @@
 "use client";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import CustomEditor from "./CustomEditor";
+import classasicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default function CKEditorWrapper({
   initialData = "",
@@ -12,7 +13,7 @@ export default function CKEditorWrapper({
 }) {
   return (
     <CKEditor
-      editor={ClassicEditor}
+      editor={classasicEditor}
       data={initialData}
       onChange={(event, editor) => {
         const data = editor.getData();

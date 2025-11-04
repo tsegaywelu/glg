@@ -33,7 +33,9 @@ const QestionHeader = () => {
       <h1 className="font-normal text-5 text-white text-center">
         {t("still_wondering")}
       </h1>
+
       <p className="font-bold text-[2rem]">
+        <span className="text-white"> {freeTrialText.split("<o>")[0]}</span>
         <span className="text-primary">{primaryPart}</span>
         <span className="text-white">{whitePart}</span>
       </p>

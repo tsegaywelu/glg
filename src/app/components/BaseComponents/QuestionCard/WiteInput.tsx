@@ -1,3 +1,5 @@
+"use client";
+import { useTranslation } from "react-i18next";
 type InputProps = {
   placeholder?: string;
   label?: string;
@@ -6,6 +8,7 @@ type InputProps = {
   value: string;
   onChange: (value: string) => void;
   QuestionComponent?: boolean;
+  reverselabel?: boolean;
 };
 
 const WhiteInput = ({
@@ -13,15 +16,52 @@ const WhiteInput = ({
   label,
   type,
   id,
+  reverselabel,
   value,
   onChange,
   QuestionComponent,
 }: InputProps) => {
+  const { i18n } = useTranslation();
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
+    let inputValue = event.target.value;
+
+    const numericValue = inputValue.replace(/,/g, "");
+
+    if (numericValue === "") {
+      onChange("");
+      return;
+    }
+
+    if (/^\d+$/.test(numericValue)) {
+      const formatted = Number(numericValue).toLocaleString();
+      onChange(formatted);
+    } else {
+      onChange(inputValue);
+    }
   };
+
   return (
-    <div className="flex items-end gap-x-[0.25rem] font-pretendard  ">
+    <div
+      className={`${
+        reverselabel
+          ? "flex items-end gap-x-[0.25rem] font-pretendard"
+          : `grid  ${
+              i18n.language === "ko"
+                ? "grid-cols-[5rem_1fr]"
+                : "grid-cols-[12rem_1fr]"
+            }  items-end font-pretendard`
+      }`}
+    >
+      {!reverselabel && (
+        <label
+          htmlFor={id}
+          className={"font-semibold text-[1.25rem]   text-[#09090B] "}
+        >
+          {label}
+        </label>
+      )}
+
       <input
         type={type || "text"}
         id={id}
@@ -29,18 +69,22 @@ const WhiteInput = ({
           pb-3 pt-2 focus:outline-none  text-center
         placeholder:text-[#09090B] placeholder:opacity-[30%] text-[#09090B]
         ${
-          QuestionComponent ? "max-w-[11.375rem]" : "w-full text-start md:w-fit"
+          QuestionComponent ? "max-w-[12.375rem]" : "w-full text-start md:w-fit"
         }`}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
       />
-      <label
-        htmlFor={id}
-        className="font-semibold text-[1.25rem] md:text-[1rem]  text-[#09090B]"
-      >
-        {label}
-      </label>
+      {reverselabel && (
+        <label
+          htmlFor={id}
+          className={
+            "font-semibold text-[1.25rem] md:text-[1.25rem]  text-[#09090B] "
+          }
+        >
+          {label}
+        </label>
+      )}
     </div>
   );
 };

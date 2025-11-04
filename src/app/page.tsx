@@ -27,14 +27,14 @@ export default function Home() {
         </div>
         <HeroSection />
       </main>
-      <div className="px-[5rem] 2xl:px-[15rem] max-w-[108rem] mx-auto">
+      <div className="px-[5rem] 2xl:px-[10rem] max-w-[108rem] mx-auto">
         <Card1 />
         <Card2 />
         <Card3 />
         <Card4 />
         <Question />
       </div>
-      <div className="px-[5rem] 2xl:px-[15rem]">
+      <div className="px-[5rem] 2xl:px-[10rem]">
         <Footer />
       </div>
     </div>

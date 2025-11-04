@@ -21,14 +21,14 @@ const Card1 = () => {
             />
             <div>면 쉬웠을텐데요!</div>
           </div> */}
-          <div className="flex items-center justify-center gap-x-[0.62rem] flex-wrap text-white  text-[2rem] text-center ">
+          <div className="flex items-center justify-center gap-x-[0.62rem] flex-wrap text-white  text-[2rem] text-center font-bold ">
             <div>{t("easy_with_glitch").split("<img>")[0]}</div>
             <img
               src="/images/tempLogo.png"
               alt="Logo"
               className="h-[1.75rem] w-[6.9375rem]"
             />
-            <div>
+            <div className="font-extrabold">
               {t("easy_with_glitch").split("</img>")[1] ||
                 t("easy_with_glitch").split("<img>")[1]?.split("</img>")[0]}
             </div>

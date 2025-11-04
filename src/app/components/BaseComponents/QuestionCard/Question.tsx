@@ -7,42 +7,43 @@ import QuestionWithCheckBox from "../../UI/QuestionWithCheckBox";
 import QestionHeader from "./QestionHeader";
 import QR from "./QR";
 import WhiteInput from "./WiteInput";
-// import { FormData } from "../../../Type";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import { showToast } from "../../toastComponents/showToast";
+
 const Question = () => {
+  const { t } = useTranslation();
   const router = useRouter();
-  const Button1Texts = ["기획", "디자인", "개발", "배포"];
+
+  const Button1Texts = [t("planning"), t("design"), t("dev"), t("deployment")];
   const Button2Texts = [
-    "iOS앱",
-    "안드로이드 앱",
-    "기획",
-    "디자인",
-    "개발",
-    "배포",
+    t("ios_app"),
+    t("android_app"),
+    t("planning"),
+    t("design"),
+    t("dev"),
+    t("deployment"),
   ];
   const Button3Texts = [
-    "관리자 페이지",
-    "iOS앱",
-    "안드로이드 앱",
-    "기획",
-    "디자인",
-    "개발",
-    "배포",
+    t("admin_dashboard"),
+    t("ios_app"),
+    t("android_app"),
+    t("planning"),
+    t("design"),
+    t("dev"),
+    t("deployment"),
   ];
+
   const [formData, setFormData] = useState({
-    // Q1: Development Type (mutually exclusive)
     developmentType: {
       homepage: false,
       mobileApp: false,
       webService: false,
     },
-    // Q2: Development Status (radio buttons)
     developmentStatus: {
       newDevelopment: false,
       maintenance: false,
     },
-    // Q3: Budget
     budget: "",
   });
 
@@ -60,7 +61,6 @@ const Question = () => {
       const currentState = prev.developmentType;
 
       if (type === "homepage") {
-        // Toggle homepage independently
         return {
           ...prev,
           developmentType: {
@@ -69,7 +69,6 @@ const Question = () => {
           },
         };
       } else if (type === "mobileApp") {
-        // Select mobileApp, deselect webService
         return {
           ...prev,
           developmentType: {
@@ -82,7 +81,6 @@ const Question = () => {
           },
         };
       } else if (type === "webService") {
-        // Select webService, deselect mobileApp
         return {
           ...prev,
           developmentType: {
@@ -100,7 +98,6 @@ const Question = () => {
     });
   };
 
-  // Handler for Q3: Development Status (radio buttons - mutually exclusive)
   const handleDevelopmentStatusChange = (
     type: keyof typeof formData.developmentStatus
   ) => {
@@ -115,43 +112,38 @@ const Question = () => {
 
   const handleNavigation = () => {
     const params = new URLSearchParams();
-    // Validation: at least one development type must be selected
     const hasDevType =
       formData.developmentType.homepage ||
       formData.developmentType.mobileApp ||
       formData.developmentType.webService;
 
-    // Validation: development status must be selected
     const hasDevStatus =
       formData.developmentStatus.newDevelopment ||
       formData.developmentStatus.maintenance;
 
-    // Validation: budget is required
     if (!hasDevType || !hasDevStatus || !formData.budget) {
-      showToast("error", <div>"Please fill all forms"</div>);
+      showToast("error", <div>{t("get_consultation")}</div>);
       return;
     }
 
-    // Q1: Development Type (can be multiple)
     if (formData.developmentType.homepage) params.append("type", "homepage");
     if (formData.developmentType.mobileApp) params.append("type", "mobileApp");
     if (formData.developmentType.webService)
       params.append("type", "webService");
 
-    // Q2: Development Status (mutually exclusive)
     if (formData.developmentStatus.newDevelopment) {
       params.set("status", "new");
     } else if (formData.developmentStatus.maintenance) {
       params.set("status", "maint");
     }
 
-    // Q3: Budget (only if not empty)
     if (formData.budget) {
       params.set("budget", formData.budget);
     }
 
     router.push(`/estimation?${params.toString()}`);
   };
+
   const appCheck =
     formData.developmentType.mobileApp ||
     formData.developmentType.webService ||
@@ -160,40 +152,39 @@ const Question = () => {
     formData.developmentStatus.newDevelopment ||
     formData.developmentStatus.maintenance;
   const ButtonValidation = formData.budget && appCheck && Jobtype;
+
   return (
     <div className=" w-full  py-[5rem] space-y-10">
       <QestionHeader />
       <div className=" w-full  lg:max-w-[59.1875rem] mx-auto flex  flex-col items-center lg:flex-row lg:items-start lg:justify-center gap-10 ">
         <div className="w-full bg-white p-10 space-y-[2.5rem] ">
-          {/* <GiveMeQuestion QuestionNmeber="" QuestionText="" /> */}
-          {/* <Button ButtonText="" /> */}
           <div className="space-y-[2.5rem]">
             <div className="space-y-[2rem]">
               <GiveMeQuestion
                 QuestionNmeber="Q1"
-                QuestionText="개발하려는 것이 어떤건가요?"
+                QuestionText={t("developing_what")}
               />
               <div className="flex flex-col gap-y-[1.25rem]  ">
                 <CeckBoxSelection
                   ButtonTexts={Button1Texts}
-                  titel="홈페이지"
-                  Totalwon="평균 : 400만원~"
+                  titel={t("website")}
+                  Totalwon={t("website_price")}
                   QuestionNumber="Question1"
                   isSelected={formData.developmentType.homepage}
                   onToggle={() => handleDevelopmentTypeChange("homepage")}
                 />
                 <CeckBoxSelection
                   ButtonTexts={Button2Texts}
-                  titel="아이폰 앱, 안드로이드 앱"
-                  Totalwon="평균 : 1,600만원~"
+                  titel={t("ios_android_app")}
+                  Totalwon={t("ios_android_app_price")}
                   QuestionNumber="Question2"
                   isSelected={formData.developmentType.mobileApp}
                   onToggle={() => handleDevelopmentTypeChange("mobileApp")}
                 />
                 <CeckBoxSelection
                   ButtonTexts={Button3Texts}
-                  titel="앱/웹 서비스, 플랫폼"
-                  Totalwon="평균 : 4,000만원~"
+                  titel={t("app_web_service")}
+                  Totalwon={t("app_web_service_price")}
                   QuestionNumber="Question3"
                   isSelected={formData.developmentType.webService}
                   onToggle={() => handleDevelopmentTypeChange("webService")}
@@ -203,18 +194,18 @@ const Question = () => {
             <div className="space-y-[2rem]">
               <GiveMeQuestion
                 QuestionNmeber="Q2"
-                QuestionText="기존에 개발 된 것이 있나요?"
+                QuestionText={t("dev_status")}
               />
               <div className="space-y-[1.25rem]">
                 <QuestionWithCheckBox
-                  QuestionText="신규 개발"
+                  QuestionText={t("new_dev")}
                   checked={formData.developmentStatus.newDevelopment}
                   onChange={() =>
                     handleDevelopmentStatusChange("newDevelopment")
                   }
                 />
                 <QuestionWithCheckBox
-                  QuestionText="유지보수 / 리뉴얼"
+                  QuestionText={t("maintenance_redesign")}
                   checked={formData.developmentStatus.maintenance}
                   onChange={() => handleDevelopmentStatusChange("maintenance")}
                 />
@@ -223,12 +214,12 @@ const Question = () => {
             <div className="space-y-[2rem] ">
               <GiveMeQuestion
                 QuestionNmeber="Q3"
-                QuestionText="정해진 예산은 어느정도인가요?"
+                QuestionText={t("budget_range")}
               />
               <div>
                 <WhiteInput
-                  placeholder="숫자만 입력"
-                  label="만원"
+                  placeholder={t("num_only")}
+                  label={t("units")}
                   id="budget"
                   value={formData.budget}
                   onChange={(value) =>
@@ -238,6 +229,7 @@ const Question = () => {
                     )
                   }
                   QuestionComponent
+                  reverselabel
                 />
               </div>
             </div>
@@ -247,7 +239,7 @@ const Question = () => {
             onClick={handleNavigation}
             disabled={!ButtonValidation}
           >
-            빠른 상담받기
+            {t("get_consultation")}
           </button>
         </div>
         <QR />

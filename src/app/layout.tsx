@@ -6,7 +6,7 @@ import ToastProvider from "./components/toastComponents/ToastProvider";
 import I18nProvider from "./I18nProvider";
 // import "../i18n";
 export const metadata: Metadata = {
-  title: "Glitch Project",
+  title: "Glitch",
   description: "Glitch static Project",
 };
 
