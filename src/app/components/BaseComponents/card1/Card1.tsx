@@ -3,6 +3,7 @@ import HeaderCard1 from "./HeaderCard1";
 // import UnionSVG from "../../Icons/Union.svg";
 import UnionIcon from "../../Icons/Union";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 const Card1 = () => {
   const { t } = useTranslation();
   return (
@@ -12,22 +13,17 @@ const Card1 = () => {
           <h1 className="text-[1.25rem] text-white font-normal">
             {t("until_now")}
           </h1>
-          {/* <div className="flex items-center justify-center gap-x-[0.62rem] flex-wrap text-white  text-[2rem] text-center ">
-            <div>왜 고민하고 있었나요?</div>
-            <img
-              src="/images/tempLogo.png"
-              alt="Logo"
-              className="h-[1.75rem] w-[6.9375rem]"
-            />
-            <div>면 쉬웠을텐데요!</div>
-          </div> */}
+
           <div className="flex items-center justify-center gap-x-[0.62rem] flex-wrap text-white  text-[2rem] text-center font-bold ">
             <div>{t("easy_with_glitch").split("<img>")[0]}</div>
-            <img
+            <Image
               src="/images/tempLogo.png"
               alt="Logo"
-              className="h-[1.75rem] w-[6.9375rem]"
+              width={111}
+              height={28}
+              className="h-[1.75rem] w-[6.9375rem] object-contain"
             />
+
             <div className="font-extrabold">
               {t("easy_with_glitch").split("</img>")[1] ||
                 t("easy_with_glitch").split("<img>")[1]?.split("</img>")[0]}
@@ -148,7 +144,7 @@ const Card1 = () => {
           <div className="w-full  h-full flex-1">
             <BodyCard1
               ImageURL="/images/card1Images/frame31.png"
-              borderColor="#FFB8AF29"
+              borderColor="#FFB8AF"
               Texts={
                 <div className="">
                   전담 PM과 AI 기획자가 실시간으로 개발자를 전담마크해

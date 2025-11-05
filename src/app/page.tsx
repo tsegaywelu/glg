@@ -5,8 +5,6 @@ import Card2 from "./components/BaseComponents/card2/Card2";
 import Card3 from "./components/BaseComponents/card3/Card3";
 import Card4 from "./components/BaseComponents/card4/Card4";
 import Question from "./components/BaseComponents/QuestionCard/Question";
-import Footer from "./components/OneTimeComponents/Footer";
-import Header from "./components/OneTimeComponents/Header";
 import HeroSection from "./components/OneTimeComponents/HeroSection";
 import { useTranslation } from "react-i18next";
 export default function Home() {
@@ -15,11 +13,6 @@ export default function Home() {
     <div className="overflow-y-auto bg-[#09090B]">
       <main className="flex flex-col   ">
         <div>
-          <Header />
-          {/* <div className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem] font-bold text-center">
-            <span className="font normal">지금 문의하면</span>
-            <span className="font-bold"> 개발자 3일 무료</span>
-          </div> */}
           <div
             className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem]  text-center"
             dangerouslySetInnerHTML={{ __html: t("inquire") }}
@@ -33,9 +26,6 @@ export default function Home() {
         <Card3 />
         <Card4 />
         <Question />
-      </div>
-      <div className="px-[5rem] 2xl:px-[10rem]">
-        <Footer />
       </div>
     </div>
   );

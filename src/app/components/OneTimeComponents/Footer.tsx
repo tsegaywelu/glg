@@ -11,7 +11,7 @@ const Footer = () => {
     { text: t("pricing"), link: "/price" },
     {
       text: t("brochure"),
-      link: "http://localhost:3000/pdf/portfolio.pdf",
+      link: "/pdf/portfolio.pdf",
       newTab: true,
     },
     {
@@ -24,7 +24,7 @@ const Footer = () => {
     { text: t("sweech_co_ltd"), link: "https://sherry.gg", newTab: true },
     {
       text: t("brochure"),
-      link: "http://localhost:3000/pdf/sherry.pdf",
+      link: "/pdf/sherry.pdf",
       newTab: true,
     },
   ];
@@ -54,9 +54,12 @@ const Footer = () => {
                 {t("customer_inquiries")}
               </p>
             </div>
-            <p className="font-semibold text-[1.75rem] text-white">
+            <a
+              href="tel:+972532472345"
+              className="font-semibold text-[1.75rem] text-white"
+            >
               053-247-2345
-            </p>
+            </a>
           </div>
           <div className="flex gap-[1.19rem] ">
             <div className="text-white font-normal text-[1.25rem]">
@@ -66,7 +69,12 @@ const Footer = () => {
               {t("days_off")}
             </div>
           </div>
-          <div className="text-white font-normal text-5">help@sweech.io</div>
+          <a
+            href="mailto:help@sweech.io"
+            className="text-white font-normal text-5"
+          >
+            help@sweech.io
+          </a>
         </div>
         <div className="flex gap-[2.44rem] ">
           <div className="flex flex-col gap-4 ">

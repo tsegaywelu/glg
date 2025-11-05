@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type BoadyCard4Props = {
   ImageUrl: string;
   Texts: string;
@@ -6,12 +8,14 @@ type BoadyCard4Props = {
 const BoadyCard4 = ({ ImageUrl, Texts }: BoadyCard4Props) => {
   return (
     <div className=" space-y-5 flex flex-col items-center border border-[#FFD9B5] bg-[#FFD8B31F] rounded-[0.125rem] ">
-      <img
+      <Image
         src={ImageUrl}
         alt="Image"
-        className="w-[14.7625rem] h-[14.7625rem] object-fill "
+        width={236}
+        height={236}
+        className="w-[14.7625rem] h-[14.7625rem] object-fill"
       />
-      <div className="max-w-[14.7625rem] px-[1.25rem] pb-[1.3rem] text-[1.25rem] font-normal text-white whitespace-nowrap truncate">
+      <div className="w-full max-w-[14.7625rem] pb-[1.3rem] text-[1.25rem] text-start   font-normal text-white whitespace-nowrap truncate">
         {Texts}
       </div>
     </div>

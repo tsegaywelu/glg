@@ -118,7 +118,7 @@ const Card4 = () => {
     <div className="  py-[5rem] space-y-[5rem] ">
       <HeaderCard4 />
       {/* md:grid-cols-3 */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-5 gap-y-10">
+      <div className="grid grid-cols-2 xl:grid-cols-5 gap-x-5 gap-y-10">
         {AllImages.map((image, index) => (
           <div key={index} className="relative">
             <BoadyCard4 ImageUrl={image.src} Texts={image.Texts} />

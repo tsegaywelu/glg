@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import BodyCard3 from "./BodyCard3";
 import HeaderCard3 from "./HeaderCard3";
 import { useTranslation } from "react-i18next";
@@ -44,18 +45,22 @@ const Card3 = () => {
             {index !== AllImages.length - 1 && (
               <>
                 <div className="flex lg:hidden absolute -bottom-[2.75rem] left-1/2 transform -translate-x-1/2">
-                  <img
+                  <Image
                     src="/images/card3Images/Arrow.png"
                     alt="arrow"
-                    className="w-[0.875rem] h-[0.875rem] rotate-90"
+                    width={14}
+                    height={14}
+                    className="w-[0.875rem] h-[0.875rem] rotate-90 object-contain"
                   />
                 </div>
 
                 <div className="hidden lg:flex items-center justify-center absolute top-1/2 -right-[2.75rem] transform -translate-y-1/2">
-                  <img
+                  <Image
                     src="/images/card3Images/Arrow.png"
                     alt="arrow"
-                    className="w-[0.875rem] h-[0.875rem]"
+                    width={14}
+                    height={14}
+                    className="w-[0.875rem] h-[0.875rem] object-contain"
                   />
                 </div>
               </>

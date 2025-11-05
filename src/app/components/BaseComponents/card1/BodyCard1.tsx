@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ReactNode } from "react";
 
 type bodyPrpoststype = {
@@ -21,14 +22,13 @@ const BodyCard1 = ({
       className=" px-[2.5rem] py-[2rem] space-y-5 border rounded-[0.125rem] flex flex-col items-center overflow-clip"
       style={{ borderColor, backgroundColor }}
     >
-      <img
+      <Image
         src={ImageURL}
         alt="Image preview"
-        className="object-fit  w-full h-[15.625rem]"
+        width={250} // required
+        height={250} // required
+        className="object-cover w-full h-[15.625rem]"
       />
-      {/* <div className="w-[18.7708rem]  text-[1.25rem] font-normal  text-center whitespace-nowrap truncate">
-        {Texts}
-      </div> */}
 
       <div className="w-full text-[1.25rem] font-normal text-center overflow-hidden text-ellipsis line-clamp-3 ">
         {Texts}

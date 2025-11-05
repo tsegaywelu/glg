@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type BodyCard1Props = {
   ImageURL: string;
   buttonText?: string;
@@ -16,9 +18,11 @@ const BodyCard2 = ({
       className={`   flex flex-col items-center gap-y-[0.75rem] rounded-[0.125rem] py-[0.92rem] `}
       style={{ backgroundColor: MYClassName }}
     >
-      <img
+      <Image
         src={ImageURL}
         alt="Image preview"
+        width={403}
+        height={214}
         className="object-contain w-[25.1667rem] h-[13.375rem]"
       />
       <div

@@ -8,6 +8,9 @@ import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const { t, i18n } = useTranslation();
+  // const [mounted, setMounted] = useState(false);
+  // useEffect(() => setMounted(true), []);
+  // if (!mounted) return null;
   const currentLang = i18n.language === "ko" ? "KR" : "EN";
   const pathName = usePathname();
 
@@ -44,9 +47,11 @@ export default function Header() {
         {/* main header */}
         <div className="w-full container mx-auto flex  items-center justify-between   ">
           <Link href="/" className="flex items-center  cursor-pointer ">
-            <img
+            <Image
               src="/images/tempLogo.png"
               alt="Logo"
+              width={126}
+              height={32}
               className="h-[2rem] w-[7.875rem]"
             />
           </Link>
