@@ -6,16 +6,30 @@ import CheckIcon from "../components/Icons/CheckIcon";
 import { useTranslation } from "react-i18next";
 
 const PriceCard = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  const rates = {
-    planner: 300000,
-    designer: 300000,
-    webDev: 120000,
-    mobileDev: 120000,
-    backendDev: 120000,
-    infraDev: 350000,
+  const getRates = (lang: string) => {
+    if (lang === "en") {
+      return {
+        planner: 210,
+        designer: 210,
+        webDev: 84,
+        mobileDev: 84,
+        backendDev: 84,
+        infraDev: 245,
+      };
+    }
+    // Default to Korean
+    return {
+      planner: 300000,
+      designer: 300000,
+      webDev: 120000,
+      mobileDev: 120000,
+      backendDev: 120000,
+      infraDev: 350000,
+    };
   };
+  const rates = useMemo(() => getRates(i18n.language), [i18n.language]);
 
   const [days, setDays] = useState({
     planner: "",
@@ -49,7 +63,7 @@ const PriceCard = () => {
       techFee: tech.toLocaleString(),
       total: (labor + tech).toLocaleString(),
     };
-  }, [days]);
+  }, [days, rates]);
 
   return (
     <div className=" py-[5rem] space-y-[5rem] max-w-[59.1875rem] mx-auto ">
@@ -83,7 +97,7 @@ const PriceCard = () => {
                     {t("planner")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
-                    {t("daily_cost")}
+                    {i18n.language === "ko" ? "300,000원 / 일" : "$210 / Days"}
                   </p>
                 </div>
               </div>
@@ -93,7 +107,7 @@ const PriceCard = () => {
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
               <div className="text-[1.25rem] font-normal text-white hidden lg:block">
-                {t("daily_cost")}
+                {i18n.language === "ko" ? "300,000원 / 일" : "$210 / Days"}
               </div>
               <div>
                 <Input
@@ -119,7 +133,7 @@ const PriceCard = () => {
                     {t("designer")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
-                    {t("daily_cost")}
+                    {i18n.language === "ko" ? "300,000원 / 일" : "$210 / Days"}
                   </p>
                 </div>
               </div>
@@ -129,7 +143,7 @@ const PriceCard = () => {
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
               <div className="text-[1.25rem] font-normal text-white hidden lg:block">
-                {t("daily_cost")}
+                {i18n.language === "ko" ? "300,000원 / 일" : "$210 / Days"}
               </div>
               <div>
                 <Input
@@ -155,7 +169,9 @@ const PriceCard = () => {
                     {t("web_dev")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
-                    120,000원~ / 일
+                    {i18n.language === "ko"
+                      ? " 120,000원~ / 일"
+                      : "~$84 / Days"}
                   </p>
                 </div>
               </div>
@@ -165,7 +181,7 @@ const PriceCard = () => {
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
               <div className="text-[1.25rem] font-normal text-white hidden lg:block">
-                120,000원~ / 일
+                {i18n.language === "ko" ? " 120,000원~ / 일" : "~$84 / Days"}
               </div>
               <div>
                 <Input
@@ -191,7 +207,9 @@ const PriceCard = () => {
                     {t("app_dev")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
-                    120,000원~ / 일
+                    {i18n.language === "ko"
+                      ? " 120,000원~ / 일"
+                      : "~$84 / Days"}
                   </p>
                 </div>
               </div>
@@ -201,7 +219,7 @@ const PriceCard = () => {
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
               <div className="text-[1.25rem] font-normal text-white hidden lg:block">
-                120,000원~ / 일
+                {i18n.language === "ko" ? " 120,000원~ / 일" : "~$84 / Days"}
               </div>
               <div>
                 <Input
@@ -227,7 +245,9 @@ const PriceCard = () => {
                     {t("backend_dev")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
-                    120,000원~ / 일
+                    {i18n.language === "ko"
+                      ? " 120,000원~ / 일"
+                      : "~$84 / Days"}
                   </p>
                 </div>
               </div>
@@ -237,7 +257,7 @@ const PriceCard = () => {
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
               <div className="text-[1.25rem] font-normal text-white hidden lg:block">
-                120,000원~ / 일
+                {i18n.language === "ko" ? " 120,000원~ / 일" : "~$84 / Days"}
               </div>
               <div>
                 <Input
@@ -264,7 +284,7 @@ const PriceCard = () => {
                     {t("infra_engineer")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
-                    350,000원 / 일
+                    {i18n.language === "ko" ? " 350,000원 / 일" : "$245 / Days"}
                   </p>
                 </div>
               </div>
@@ -274,7 +294,7 @@ const PriceCard = () => {
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
               <div className="text-[1.25rem] font-normal text-white hidden lg:block">
-                350,000원 / 일
+                {i18n.language === "ko" ? " 350,000원 / 일" : "$245 / Days"}
               </div>
               <div>
                 <Input
@@ -297,7 +317,9 @@ const PriceCard = () => {
               {t("labor_cost")}
             </div>
             <div className="text-[1.25rem] font-bold text-white">
-              {laborCost}원
+              {i18n.language === "en" && "$"}
+              {laborCost}
+              {i18n.language === "ko" && "원"}
             </div>
           </div>
           <div className=" flex justify-between items-center ">
@@ -305,14 +327,20 @@ const PriceCard = () => {
               {t("technical_fee")}
             </div>
             <div className="text-[1.25rem] font-bold text-white">
-              {techFee}원
+              {i18n.language === "en" && "$"}
+              {techFee}
+              {i18n.language === "ko" && "원"}
             </div>
           </div>
           <div className=" flex justify-between items-center ">
             <div className="text-[1.25rem] font-normal text-white">
               {t("vat")}
             </div>
-            <div className="text-[1.25rem] font-bold text-white">{total}원</div>
+            <div className="text-[1.25rem] font-bold text-white">
+              {i18n.language === "en" && "$"}
+              {total}
+              {i18n.language === "ko" && "원"}
+            </div>
           </div>
         </div>
       </div>
