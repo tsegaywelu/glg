@@ -188,21 +188,21 @@ export default function HeroSection() {
       <section className=" flex items-center justify-center flex-1 px-[5rem]  ">
         <div className="space-y-4 ">
           <div className="space-y-[2rem]">
-            <div className="text-[1.25rem] text-[#71717A] text-center font-normal">
+            <div className="text-[1.25rem] text-[#71717A] text-center font-normal leading-[1.4375rem]">
               {t("for_who")}
             </div>
-            <div className="text-[#FFFFFF] font-bold text-[2rem] text-center ">
+            <div className="text-[#FFFFFF] font-bold text-[2rem] text-center leading-[2.3125rem]">
               {t("blind_outsourcing")}
             </div>
           </div>
           <div className="space-y-10">
-            <div className="text-[2rem] font-normal text-[#fff] text-center">
+            <div className="text-[2rem] font-normal text-[#fff] text-center leading-[2.3125rem] whitespace-pre-line">
               {t("full_visibility")}
             </div>
             <div className="flex justify-center ">
               <Link
                 href={"/estimation"}
-                className="text-[1rem] bg-[#FF7B00] px-6 py-4 rounded-full text-white font-bold"
+                className="text-[1rem] bg-[#FF7B00] px-[1.5rem] py-[0.75rem] rounded-full text-white font-bold leading-[1.125rem]"
               >
                 {t("get_quote")}
               </Link>
@@ -210,14 +210,16 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
-      <div className="bg-[#FFFFFF99] overflow-hidden py-[1.75rem]  w-full relative">
-        <div className="  flex items-center animate-scroll gap-x-[3.25rem]  whitespace-nowrap  ">
+
+      <div className="bg-[#FFFFFF99] overflow-hidden py-[1.5rem] w-full relative">
+        <div className="flex items-center animate-scroll gap-x-[3.25rem] whitespace-nowrap">
+          {/* First set of images */}
           {Imagelogs.map((image, index) => (
-            <Link
-              key={index}
-              href={image.link.trim()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <div
+              key={`set1-${index}`}
+              // href={image.link.trim()}
+              // target="_blank"
+              // rel="noopener noreferrer"
             >
               <ImageCard
                 src={image.src}
@@ -227,7 +229,26 @@ export default function HeroSection() {
                 height={image.height}
                 className={image.className}
               />
-            </Link>
+            </div>
+          ))}
+
+          {/* Duplicate set for infinite scroll */}
+          {Imagelogs.map((image, index) => (
+            <div
+              key={`set2-${index}`}
+              // href={image.link.trim()}
+              // target="_blank"
+              // rel="noopener noreferrer"
+            >
+              <ImageCard
+                src={image.src}
+                alt={image.alt}
+                link={image.link}
+                width={image.width}
+                height={image.height}
+                className={image.className}
+              />
+            </div>
           ))}
         </div>
       </div>

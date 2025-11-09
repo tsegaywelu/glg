@@ -2,15 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const { t, i18n } = useTranslation();
-  // const [mounted, setMounted] = useState(false);
-  // useEffect(() => setMounted(true), []);
-  // if (!mounted) return null;
+  const searchParams = useSearchParams();
+
   const currentLang = i18n.language === "ko" ? "KR" : "EN";
   const pathName = usePathname();
 
@@ -30,9 +29,13 @@ export default function Header() {
       document.body.classList.remove("no-scroll");
     };
   }, [isMenuOpen]);
+  const paramsString = searchParams?.toString();
   const navItems = [
-    { name: t("outsourcing"), href: "/" },
-    { name: t("pricing"), href: "/price" },
+    { name: t("outsourcing"), href: paramsString ? `/?${paramsString}` : "/" },
+    {
+      name: t("pricing"),
+      href: paramsString ? `/price?${paramsString}` : "/price",
+    },
     { name: t("brochure"), href: "/pdf/portfolio.pdf", newTab: true },
     {
       name: t("tips"),
@@ -42,10 +45,10 @@ export default function Header() {
   ];
 
   return (
-    <div className="">
-      <div className="bg-[#09090B] text-white font-semibold font-pretendard  py-[1.81rem]">
+    <div className="w-full">
+      <div className=" text-white font-semibold font-pretendard  py-[1.81rem]">
         {/* main header */}
-        <div className="w-full container mx-auto flex  items-center justify-between   ">
+        <div className="w-full  mx-auto flex  items-center justify-between  ">
           <Link href="/" className="flex items-center  cursor-pointer ">
             <Image
               src="/images/tempLogo.png"
@@ -53,12 +56,14 @@ export default function Header() {
               width={126}
               height={32}
               className="h-[2rem] w-[7.875rem]"
+              quality={80}
+              // placeholder="blur"
             />
           </Link>
 
           {/* desktop nav */}
           <div className=" flex items-center   gap-x-[2.5rem]  ">
-            <nav className="hidden xl:flex items-center gap-x-[2.5rem] w-full ">
+            <nav className="hidden xl:flex items-center gap-x-[2.5rem] w-full leading-[1.5rem] ">
               {navItems.map((item) =>
                 item.newTab ? (
                   <a
@@ -73,7 +78,7 @@ export default function Header() {
                     {item.name}
                   </a>
                 ) : (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     className={` ${
@@ -81,7 +86,7 @@ export default function Header() {
                     } hover:text-[#FF7B00] transition-colors text-[1.25rem] font-semibold`}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 )
               )}
 
@@ -98,6 +103,8 @@ export default function Header() {
                     className={`w-[1.5rem] h-[1.5rem] cursor-pointer transform transition-transform duration-300 ease-in-out ${
                       currentLang === "KR" ? "rotate-180 " : ""
                     }`}
+                    quality={80}
+                    // placeholder="blur"
                   />
                 </button>
                 <button>
@@ -111,13 +118,15 @@ export default function Header() {
                     width={28}
                     height={28}
                     className="w-[1.75rem] h-[1.75rem] cursor-pointer"
+                    quality={80}
+                    // placeholder="blur"
                   />
                 </button>
               </div>
             </nav>
             <Link
               href="/estimation"
-              className={`px-[1.5rem] py-[0.75rem] border-[0.125rem] border-[#FF7B00] 
+              className={`px-[1.5rem] py-[0.75rem] border-[0.125rem] border-[#FF7B00]  leading-[1.125rem]
             whitespace-nowrap text-[1rem] 
             font-bold rounded-full  hover:text-primary
             ${pathName === "/estimation" ? "text-primary" : "text-white"}`}
@@ -161,7 +170,7 @@ export default function Header() {
         }`}
       >
         <div className="flex flex-col items-center justify-center space-y-[5rem] font-semibold ">
-          <nav className="flex flex-col space-y-[5rem] text-white items-center justify-center">
+          <nav className="flex flex-col space-y-[5rem] text-white items-center justify-center leading-[1.5rem]">
             {navItems.map((item, index) =>
               item.newTab ? (
                 <a
@@ -177,7 +186,7 @@ export default function Header() {
                   {item.name}
                 </a>
               ) : (
-                <a
+                <Link
                   key={index}
                   href={item.href}
                   className={` ${
@@ -186,7 +195,7 @@ export default function Header() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               )
             )}
           </nav>
@@ -201,6 +210,8 @@ export default function Header() {
                 className={`w-[24px] h-[24px] cursor-pointer transform transition-transform duration-300 ease-in-out ${
                   currentLang === "KR" ? "rotate-180" : ""
                 }`}
+                quality={80}
+                // placeholder="blur"
               />
             </button>
             <button onClick={toggleLanguage}>
@@ -214,6 +225,8 @@ export default function Header() {
                 width={28}
                 height={28}
                 className="w-[28px] h-[28px] cursor-pointer"
+                quality={80}
+                // placeholder="blur"
               />
             </button>
           </div>

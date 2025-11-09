@@ -37,8 +37,8 @@ const Footer = () => {
   ];
 
   return (
-    <footer className=" font-pretendard  py-[5rem]   space-y-[5rem]">
-      <div className="flex flex-col gap-y-[5rem] md:flex-row md:justify-between ">
+    <footer className=" font-pretendard  py-[5rem]   space-y-[5rem] ">
+      <div className="flex flex-col gap-y-[5rem] lg:flex-row lg:justify-between ">
         <div className="flex flex-col gap-[1.5rem]">
           <div className="flex flex-col gap-[0.75rem]">
             <div className="flex gap-2">
@@ -50,28 +50,28 @@ const Footer = () => {
                 height={24}
                 className="w-[1.5rem] h-[1.5rem]"
               />{" "}
-              <p className="font-semibold text-5 text-white">
+              <p className="font-semibold text-[1.25rem] leading-[1.5rem] text-white ">
                 {t("customer_inquiries")}
               </p>
             </div>
             <a
               href="tel:+972532472345"
-              className="font-semibold text-[1.75rem] text-white"
+              className="font-semibold text-[1.75rem] text-white leading-[2.0625rem]"
             >
               053-247-2345
             </a>
           </div>
           <div className="flex gap-[1.19rem] ">
-            <div className="text-white font-normal text-[1.25rem]">
+            <div className="text-white font-normal text-[1.25rem] leading-[1.5rem]">
               10:00 - 21:00
             </div>
-            <div className="text-[#71717A] font-normal text-[1.25rem]">
+            <div className="text-[#71717A] font-normal text-[1.25rem] leading-[1.5rem]">
               {t("days_off")}
             </div>
           </div>
           <a
             href="mailto:help@sweech.io"
-            className="text-white font-normal text-5"
+            className="text-white font-normal text-[1.25rem] leading-[1.5rem]"
           >
             help@sweech.io
           </a>
@@ -93,7 +93,7 @@ const Footer = () => {
                   className="flex gap-4 items-center"
                   key={index}
                 >
-                  <p className="text-[1.25rem] text-[#71717A] font-normal">
+                  <p className="text-[1.25rem] text-[#71717A] font-normal leading-[1.5rem]">
                     {text.text}
                   </p>
                   <Image
@@ -110,7 +110,7 @@ const Footer = () => {
                   className="flex gap-4 items-center"
                   key={index}
                 >
-                  <p className="text-[1.25rem] text-[#71717A] font-normal">
+                  <p className="text-[1.25rem] leading-[1.5rem] text-[#71717A] font-normal">
                     {text.text}
                   </p>
                   <Image
@@ -158,13 +158,15 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col gap-y-[1.25rem]">
-        <div className="font-semibold text-[1.5rem] text-white">
+        <div className="font-semibold text-[1.5rem] text-white leading-[1.8125rem]">
           {t("sweech_co_ltd")}
         </div>
         <div className="flex flex-col gap-y-[1.25rem] xl:flex-row">
           {ThereedText.map((text, index) => (
             <div key={index} className="flex xl:items-center xl:justify-center">
-              <span className="font-light text-[1rem] text-white">{text}</span>
+              <span className="font-light text-[1rem] text-white leading-[1.1875rem]">
+                {text}
+              </span>
               {index < ThereedText.length - 1 && (
                 <span className="px-[1.25rem] text-[1.25rem] font-normal hidden xl:inline-block">
                   |
@@ -173,7 +175,7 @@ const Footer = () => {
             </div>
           ))}
         </div>
-        <div className="font-light text-[1rem] text-white">
+        <div className="font-light text-[1rem] text-white leading-[1.1875rem]">
           © 2025 Sweech Inc.
         </div>
       </div>

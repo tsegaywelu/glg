@@ -26,7 +26,7 @@ const BodyCard2 = ({
         className="object-contain w-[25.1667rem] h-[13.375rem]"
       />
       <div
-        className="font-semibold font-pretendard text-white text-[0.75rem] px-2.5 py-0.5 rounded-md"
+        className="font-semibold font-pretendard text-white text-[0.75rem] px-2.5 py-0.5 rounded-md leading-[1rem]"
         style={{
           background: buttonBackground,
         }}

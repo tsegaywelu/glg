@@ -29,12 +29,12 @@ const QestionHeader = () => {
     freeTrialText.split("</o>")[1] || freeTrialText.split("<o>")[0] || "";
 
   return (
-    <div className="flex flex-col items-center ">
-      <h1 className="font-normal text-5 text-white text-center">
+    <div className="flex flex-col items-center space-y-[1rem] ">
+      <h1 className="font-normal text-5 text-white text-center leading-[1.4375rem]">
         {t("still_wondering")}
       </h1>
 
-      <p className="font-bold text-[2rem]">
+      <p className="font-bold text-[2rem] leading-[2.3125rem]">
         <span className="text-white"> {freeTrialText.split("<o>")[0]}</span>
         <span className="text-primary">{primaryPart}</span>
         <span className="text-white">{whitePart}</span>

@@ -45,18 +45,20 @@ const WhiteInput = ({
     <div
       className={`${
         reverselabel
-          ? "flex items-end gap-x-[0.25rem] font-pretendard"
+          ? "flex items-center gap-x-[0.25rem] font-pretendard"
           : `grid  ${
               i18n.language === "ko"
                 ? "grid-cols-[5rem_1fr]"
                 : "grid-cols-[12rem_1fr]"
-            }  items-end font-pretendard`
+            }  items-center font-pretendard`
       }`}
     >
       {!reverselabel && (
         <label
           htmlFor={id}
-          className={"font-semibold text-[1.25rem]   text-[#09090B] "}
+          className={
+            "font-semibold text-[1.25rem]   text-[#09090B] leading-[1rem]"
+          }
         >
           {label}
         </label>
@@ -65,7 +67,7 @@ const WhiteInput = ({
       <input
         type={type || "text"}
         id={id}
-        className={`font-semibold text-[1.25rem]  border-b-[0.125rem] border-primary 
+        className={`font-semibold text-[1.25rem]  border-b-[0.125rem] border-primary leading-[1rem]
           pb-3 pt-2 focus:outline-none  text-center
         placeholder:text-[#09090B] placeholder:opacity-[30%] text-[#09090B]
         ${
@@ -79,7 +81,7 @@ const WhiteInput = ({
         <label
           htmlFor={id}
           className={
-            "font-semibold text-[1.25rem] md:text-[1.25rem]  text-[#09090B] "
+            "font-semibold text-[1.25rem] md:text-[1.25rem]  text-[#09090B] leading-[1rem]"
           }
         >
           {label}

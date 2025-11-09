@@ -10,11 +10,11 @@ import { useTranslation } from "react-i18next";
 export default function Home() {
   const { t } = useTranslation();
   return (
-    <div className="overflow-y-auto bg-[#09090B]">
+    <div className="overflow-y-auto bg-[#09090B] text-white">
       <main className="flex flex-col   ">
         <div>
           <div
-            className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem]  text-center"
+            className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem]  text-center leading-[1rem]"
             dangerouslySetInnerHTML={{ __html: t("inquire") }}
           />
         </div>

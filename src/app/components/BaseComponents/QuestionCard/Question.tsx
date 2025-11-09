@@ -1,19 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CeckBoxSelection from "../../UI/CeckBoxSelection";
 import GiveMeQuestion from "../../UI/GiveMeQuestion";
 import QuestionWithCheckBox from "../../UI/QuestionWithCheckBox";
 import QestionHeader from "./QestionHeader";
 import QR from "./QR";
 import WhiteInput from "./WiteInput";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { showToast } from "../../toastComponents/showToast";
+// import { showToast } from "../../toastComponents/showToast";
 
 const Question = () => {
   const { t } = useTranslation();
   const router = useRouter();
+
+  const searchParams = useSearchParams();
 
   const Button1Texts = [t("planning"), t("design"), t("dev"), t("deployment")];
   const Button2Texts = [
@@ -111,7 +113,6 @@ const Question = () => {
   };
 
   const handleNavigation = () => {
-    const params = new URLSearchParams();
     const hasDevType =
       formData.developmentType.homepage ||
       formData.developmentType.mobileApp ||
@@ -120,29 +121,60 @@ const Question = () => {
     const hasDevStatus =
       formData.developmentStatus.newDevelopment ||
       formData.developmentStatus.maintenance;
+    const currentParams = new URLSearchParams(window.location.search);
 
-    if (!hasDevType || !hasDevStatus || !formData.budget) {
-      showToast("error", <div>{t("get_consultation")}</div>);
-      return;
-    }
+    router.push(`/estimation?${currentParams.toString()}`);
+  };
+  useEffect(() => {
+    if (!searchParams) return;
 
+    const types = searchParams.getAll("type");
+    const status = searchParams.get("status");
+    const budget = searchParams.get("budget");
+
+    setFormData((prev) => ({
+      developmentType: {
+        homepage: types.includes("homepage"),
+        mobileApp: types.includes("mobileApp"),
+        webService: types.includes("webService"),
+      },
+      developmentStatus: {
+        newDevelopment: status === "new",
+        maintenance: status === "maint",
+      },
+      budget: budget || prev.budget,
+    }));
+  }, [searchParams]);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    // Add development types
     if (formData.developmentType.homepage) params.append("type", "homepage");
     if (formData.developmentType.mobileApp) params.append("type", "mobileApp");
     if (formData.developmentType.webService)
       params.append("type", "webService");
 
+    // Add development status (single selection)
     if (formData.developmentStatus.newDevelopment) {
       params.set("status", "new");
     } else if (formData.developmentStatus.maintenance) {
       params.set("status", "maint");
     }
 
+    // Add budget
     if (formData.budget) {
       params.set("budget", formData.budget);
     }
 
-    router.push(`/estimation?${params.toString()}`);
-  };
+    // Update URL without page reload
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState(
+      { ...window.history.state, formData },
+      "",
+      newUrl
+    );
+  }, [formData]);
 
   const appCheck =
     formData.developmentType.mobileApp ||
@@ -156,7 +188,7 @@ const Question = () => {
   return (
     <div className=" w-full  py-[5rem] space-y-10">
       <QestionHeader />
-      <div className=" w-full  lg:max-w-[59.1875rem] mx-auto flex  flex-col items-center lg:flex-row lg:items-start lg:justify-center gap-10 ">
+      <div className=" w-full  lg:max-w-[57.1875rem] mx-auto flex  flex-col items-center lg:flex-row lg:items-start lg:justify-center gap-10 ">
         <div className="w-full bg-white p-10 space-y-[2.5rem] ">
           <div className="space-y-[2.5rem]">
             <div className="space-y-[2rem]">
@@ -235,9 +267,9 @@ const Question = () => {
             </div>
           </div>
           <button
-            className=" disabled:opacity-[30%] text-white text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full"
+            className="  text-white text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full leading-[1.125rem]"
             onClick={handleNavigation}
-            disabled={!ButtonValidation}
+            // disabled={!ButtonValidation}
           >
             {t("get_consultation")}
           </button>

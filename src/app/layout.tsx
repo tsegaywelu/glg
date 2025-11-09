@@ -6,26 +6,32 @@ import ToastProvider from "./components/toastComponents/ToastProvider";
 import I18nProvider from "./I18nProvider";
 import Footer from "./components/OneTimeComponents/Footer";
 import Header from "./components/OneTimeComponents/Header";
+import { getLocaleFromCookies } from "@/lib/get-lang-from-cookies";
+
 export const metadata: Metadata = {
   title: "Glitch",
   description: "Glitch static Project",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const lng = await getLocaleFromCookies();
+
   return (
-    <html lang="ko">
+    <html lang={lng}>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body
-        className={`${nexonFont.variable} ${pretendardFont.variable} antialiased font-nexon`}
+        className={`${nexonFont.variable} ${pretendardFont.variable} antialiased font-nexon bg-[#09090B] text-white`}
       >
-        <Header />
-        <I18nProvider>
+        <I18nProvider locale={lng}>
+          <div className="px-[5rem]  w-full bg-[#09090B] text-white">
+            <Header />
+          </div>
           {children}
-          <div className="px-[5rem] 2xl:px-[10rem]">
+          <div className="px-[5rem] 2xl:px-[10rem] bg-[#09090B] text-white">
             <Footer />
           </div>
           <ToastProvider />

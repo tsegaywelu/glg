@@ -90,9 +90,15 @@ body {
     font-size: 11px;
   }
 } */
-html {
+/* html {
   font-size: clamp(45%, calc(45% + (10 * (100vw - 320px) / (624 - 320))), 100%);
+} */
+
+html {
+  font-size: 62.5%;
+  font-size: 16px;
 }
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -108,9 +114,9 @@ html {
   width: max-content;
 }
 
-.animate-scroll:hover {
+/* .animate-scroll:hover {
   animation-play-state: paused;
-}
+} */
 /* CKE editor  */
 
 .ck-editor-wrapper {

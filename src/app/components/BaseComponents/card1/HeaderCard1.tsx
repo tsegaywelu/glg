@@ -16,23 +16,16 @@ const HeaderCard1 = ({
 }: headerProps) => {
   return (
     <div
-      className={`w-full bg-[#1E1E1E] px-[2.5rem] py-[2rem] flex flex-col items-center  gap-y-[1.25rem] border rounded-[0.125rem]`}
+      className={`w-full  bg-[#1E1E1E] px-[2.5rem] py-[2rem] flex flex-col items-center  gap-y-[1.25rem] border rounded-[0.125rem]`}
       style={{ borderColor: borderColor }}
     >
       <div
-        className={` px-4 py-2 rounded-full border-[0.125rem] text-[1.25rem]  whitespace-nowrap`}
+        className={` px-[1rem] py-[0.5rem] rounded-full border-[0.125rem] text-[0.75rem]  whitespace-nowrap font-bold leading-[0.875rem]`}
         style={{ color: textColor, borderColor: textColor }}
       >
         {buttonText}
       </div>
-      <div className="text-center  w-full ">
-        {/* <span className="text-[1.25rem] font-normal text-[#FFFFFF] text-center">
-          {headerText}
-        </span>
-        <span className="block text-[1.25rem] font-bold text-[#FFFFFF] text-center ">
-          {" "}
-          {bodyText}
-        </span> */}
+      <div className="text-center  w-full leading-[1.4375rem] md:line-clamp-2">
         {bodyText}
       </div>
     </div>

@@ -16,7 +16,7 @@ const QuestionWithCheckBox = ({
       onClick={onChange}
     >
       <CheckIcon checked={checked} />{" "}
-      <div className="text-[1.25rem]">{QuestionText}</div>
+      <div className="text-[1.25rem] leading-[1.4375rem]">{QuestionText}</div>
     </div>
   );
 };

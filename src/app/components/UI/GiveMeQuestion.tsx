@@ -11,10 +11,10 @@ const GiveMeQuestion = ({
 }: GiveMeQuestionProps) => {
   return (
     <div className="space-y-1">
-      <div className="font-bold text-[1.5rem] text-[#000000]">
+      <div className="font-bold text-[1.5rem] text-[#000000] leading-[1.75rem]">
         {QuestionNmeber}{" "}
       </div>
-      <div className="text-[1.25rem] font-normal text-[#000]">
+      <div className="text-[1.25rem] font-normal text-[#000] leading-[1.4375rem]">
         {QuestionText} {!NoStar && <span className="text-primary">*</span>}
       </div>
     </div>

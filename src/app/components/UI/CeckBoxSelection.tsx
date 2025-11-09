@@ -32,10 +32,14 @@ const CeckBoxSelection = ({
       <CheckIcon checked={isSelected} />
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-y-1  ">
-          <p className="text-[1.25rem] font-bold text-[#000]">{titel}</p>
-          <p className="text-[1rem] font-normal text-[#000]">{Totalwon}</p>
+          <p className="text-[1.25rem] font-bold text-[#000] leading-[1.4375rem]">
+            {titel}
+          </p>
+          <p className="text-[1rem] font-normal text-[#000] leading-[1.125rem]">
+            {Totalwon}
+          </p>
         </div>
-        <div className="flex flex-wrap gap-3 cursor-pointer">
+        <div className="flex flex-wrap gap-3 cursor-pointer leading-[1rem]">
           {QuestionNumber === "Question1" &&
             ButtonTexts.map((text, index) => (
               <Button key={index} ButtonText={text} />

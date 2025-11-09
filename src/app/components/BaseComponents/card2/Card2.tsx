@@ -63,7 +63,7 @@ const Card2 = () => {
           <a
             href="/pdf/portfolio.pdf"
             download
-            className="px-[1.5rem] py-[0.75rem] border-[0.125rem] border-primary rounded-full text-[1rem] font-bold text-white"
+            className="px-[1.5rem] py-[0.75rem] border-[0.125rem] border-primary rounded-full text-[1rem] font-bold text-white leading-[1.125rem]"
           >
             {t("see_more_portfolios")}
           </a>

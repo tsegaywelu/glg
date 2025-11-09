@@ -17,19 +17,25 @@
 // export default HeaderCard4;
 "use client";
 
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 const HeaderCard4 = () => {
   const { t } = useTranslation();
 
   return (
     <div className="space-y-4 ">
-      <p className="text-[1.25rem] text-[#FFFFFF] font-normal text-center">
-        {t("apps_websites_hardware")}
+      <p className="text-[1.25rem] text-[#FFFFFF] font-normal text-center leading-[1.4375rem]">
+        {/* {t("apps_websites_hardware")} */}
+        <Trans
+          i18nKey="apps_websites_hardware"
+          components={{
+            br: <br />,
+          }}
+        />
       </p>
-      <div className="text-[2rem] font-bold text-white text-center">
-        <span className="md:block">{t("any_dev_type_first")}</span>
-        <span className="md:block">{t("any_dev_type_second")}</span>
+      <div className="text-[2rem] font-bold text-white text-center leading-[2.3125rem]">
+        <div className="">{t("any_dev_type_first")}</div>
+        <div className="">{t("any_dev_type_second")}</div>
       </div>
     </div>
   );

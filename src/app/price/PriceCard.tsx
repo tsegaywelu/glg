@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Input from "../components/BaseComponents/Input";
 import CheckIcon from "../components/Icons/CheckIcon";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 const PriceCard = () => {
   const { t, i18n } = useTranslation();
@@ -69,18 +69,27 @@ const PriceCard = () => {
     <div className=" py-[5rem] space-y-[5rem] max-w-[59.1875rem] mx-auto ">
       <div className="space-y-[1rem]">
         <div className="text-[1.25rem] font-normal text-white text-center">
-          <div>
-            {t("reasonable_pricing").split("퀄리티는 최상으로")[0].trim()}
+          <div className="leading-[1.4375rem]">
+            <Trans
+              i18nKey="reasonable_pricing"
+              components={{
+                br: <br />,
+                b: <span className="font-bold" />,
+                o: <span className="text-primary font-bold" />,
+              }}
+            />
           </div>
-          {/* <div>퀄리티는 최상으로</div> */}
         </div>
         <div className="text-white text-[2rem] font-bold text-center">
-          <div>{t("contract_basis").split("<o>")[0].trim()}</div>
-          <div className="text-primary">
-            {t("contract_basis").split("<o>")[1]?.split("</o>")[0] || ""}
-            <span className="text-white">
-              {t("contract_basis").split("</o>")[1]?.trim() || ""}
-            </span>
+          <div className="leading-[2.31rem]">
+            <Trans
+              i18nKey="contract_basis"
+              components={{
+                br: <br />,
+                b: <span className="font-bold" />,
+                o: <span className="text-primary font-bold" />,
+              }}
+            />
           </div>
         </div>
       </div>
@@ -93,7 +102,7 @@ const PriceCard = () => {
                   <CheckIcon checked={days.planner !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
-                  <p className="text-[1.25rem] text-white font-normal">
+                  <p className="text-[1.25rem] text-white font-normal leading-[1.4375rem]">
                     {t("planner")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
@@ -101,12 +110,12 @@ const PriceCard = () => {
                   </p>
                 </div>
               </div>
-              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A]">
+              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A] leading-[0.875rem]">
                 {t("planner_desc")}
               </p>
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
-              <div className="text-[1.25rem] font-normal text-white hidden lg:block">
+              <div className="text-[1.25rem] font-normal text-white hidden lg:block leading-[1.4375rem]">
                 {i18n.language === "ko" ? "300,000원 / 일" : "$210 / Days"}
               </div>
               <div>
@@ -129,7 +138,7 @@ const PriceCard = () => {
                   <CheckIcon checked={days.designer !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
-                  <p className="text-[1.25rem] text-white font-normal">
+                  <p className="text-[1.25rem] text-white font-normal leading-[1.4375rem]">
                     {t("designer")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
@@ -137,12 +146,12 @@ const PriceCard = () => {
                   </p>
                 </div>
               </div>
-              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A]">
+              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A] leading-[0.875rem]">
                 {t("designer_desc")}
               </p>
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
-              <div className="text-[1.25rem] font-normal text-white hidden lg:block">
+              <div className="text-[1.25rem] font-normal text-white hidden lg:block leading-[1.4375rem]">
                 {i18n.language === "ko" ? "300,000원 / 일" : "$210 / Days"}
               </div>
               <div>
@@ -165,7 +174,7 @@ const PriceCard = () => {
                   <CheckIcon checked={days.webDev !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
-                  <p className="text-[1.25rem] text-white font-normal">
+                  <p className="text-[1.25rem] text-white font-normal leading-[1.4375rem]">
                     {t("web_dev")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
@@ -175,12 +184,12 @@ const PriceCard = () => {
                   </p>
                 </div>
               </div>
-              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A]">
+              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A] leading-[0.875rem]">
                 {t("web_dev_desc")}
               </p>
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
-              <div className="text-[1.25rem] font-normal text-white hidden lg:block">
+              <div className="text-[1.25rem] font-normal text-white hidden lg:block leading-[1.4375rem]">
                 {i18n.language === "ko" ? " 120,000원~ / 일" : "~$84 / Days"}
               </div>
               <div>
@@ -203,7 +212,7 @@ const PriceCard = () => {
                   <CheckIcon checked={days.mobileDev !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
-                  <p className="text-[1.25rem] text-white font-normal">
+                  <p className="text-[1.25rem] text-white font-normal leading-[1.4375rem]">
                     {t("app_dev")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
@@ -213,12 +222,12 @@ const PriceCard = () => {
                   </p>
                 </div>
               </div>
-              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A]">
+              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A] leading-[0.875rem]">
                 {t("app_dev_desc")}
               </p>
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
-              <div className="text-[1.25rem] font-normal text-white hidden lg:block">
+              <div className="text-[1.25rem] font-normal text-white hidden lg:block leading-[1.4375rem]">
                 {i18n.language === "ko" ? " 120,000원~ / 일" : "~$84 / Days"}
               </div>
               <div>
@@ -241,7 +250,7 @@ const PriceCard = () => {
                   <CheckIcon checked={days.backendDev !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
-                  <p className="text-[1.25rem] text-white font-normal">
+                  <p className="text-[1.25rem] text-white font-normal leading-[1.4375rem]">
                     {t("backend_dev")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
@@ -251,12 +260,12 @@ const PriceCard = () => {
                   </p>
                 </div>
               </div>
-              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A]">
+              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A] leading-[0.875rem]">
                 {t("backend_dev_desc")}
               </p>
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
-              <div className="text-[1.25rem] font-normal text-white hidden lg:block">
+              <div className="text-[1.25rem] font-normal text-white hidden lg:block leading-[1.4375rem]">
                 {i18n.language === "ko" ? " 120,000원~ / 일" : "~$84 / Days"}
               </div>
               <div>
@@ -280,7 +289,7 @@ const PriceCard = () => {
                   <CheckIcon checked={days.infraDev !== ""} />
                 </div>
                 <div className="flex flex-col gap-y-[0.75rem]">
-                  <p className="text-[1.25rem] text-white font-normal">
+                  <p className="text-[1.25rem] text-white font-normal leading-[1.4375rem]">
                     {t("infra_engineer")}
                   </p>
                   <p className="md:hidden text-[0.75rem] font-normal text-white">
@@ -288,12 +297,12 @@ const PriceCard = () => {
                   </p>
                 </div>
               </div>
-              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A]">
+              <p className=" hidden md:block text-[0.75rem] font-normal text-[#71717A] leading-[0.875rem]">
                 {t("infra_engineer_desc")}
               </p>
             </div>
             <div className="flex gap-x-[5rem]  items-end ">
-              <div className="text-[1.25rem] font-normal text-white hidden lg:block">
+              <div className="text-[1.25rem] font-normal text-white hidden lg:block leading-[1.4375rem]">
                 {i18n.language === "ko" ? " 350,000원 / 일" : "$245 / Days"}
               </div>
               <div>
@@ -311,9 +320,9 @@ const PriceCard = () => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center gap-y-[1.25rem]">
+        <div className="flex flex-col justify-center gap-y-[1.25rem] leading-[1.4375rem]">
           <div className=" flex justify-between items-center ">
-            <div className="text-[1.25rem] font-normal text-white">
+            <div className="text-[1.25rem] font-normal text-white ">
               {t("labor_cost")}
             </div>
             <div className="text-[1.25rem] font-bold text-white">

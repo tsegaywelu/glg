@@ -26,7 +26,7 @@ const BodyCard3 = ({
         height={250}
         className="object-cover w-full h-[15.625rem]"
       />
-      <div className="  text-[1.25rem] font-normal text-white text-center line-clamp-3">
+      <div className="  text-[1.25rem] font-normal text-white text-center md:line-clamp-3 leading-[1.4375rem]">
         {Texts}
       </div>
     </div>

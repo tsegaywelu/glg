@@ -25,12 +25,12 @@ const BodyCard1 = ({
       <Image
         src={ImageURL}
         alt="Image preview"
-        width={250} // required
-        height={250} // required
-        className="object-cover w-full h-[15.625rem]"
+        width={250}
+        height={250}
+        className="object-cover w-[18.7708rem] h-[15.625rem]"
       />
 
-      <div className="w-full text-[1.25rem] font-normal text-center overflow-hidden text-ellipsis line-clamp-3 ">
+      <div className="w-full text-[1.25rem] font-normal text-center overflow-hidden leading-[1.4375rem] ">
         {Texts}
       </div>
     </div>

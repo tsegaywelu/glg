@@ -229,7 +229,7 @@ const EstimationCard = () => {
         basicRequirements: formData.planningStatus.basicRequirements
           ? "Basic Requirements"
           : "제공되지 않음",
-        detailedDocuments: formData.planningStatus.detailedDocuments?"":"",
+        detailedDocuments: formData.planningStatus.detailedDocuments ? "" : "",
       },
       requirements: formData.requirements,
       projectOverview: formData.projectOverview,
@@ -308,7 +308,7 @@ const EstimationCard = () => {
 
       <div className="bg-white ">
         <div
-          className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem] font-normal text-center whitespace-nowrap overflow-hidden"
+          className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem] font-normal text-center whitespace-nowrap overflow-hidden leading-[1rem]"
           dangerouslySetInnerHTML={{ __html: t("difficult_to_fill_out") }}
         />
         <div className="p-[2.5rem] space-y-[5rem]">
@@ -540,7 +540,7 @@ const EstimationCard = () => {
           {ShowAllQestions ? (
             <div>
               <button
-                className="text-white disabled:opacity-20 text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full"
+                className="text-white disabled:opacity-20 text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full leading-[1.125rem]"
                 onClick={handleSubmit}
                 disabled={isSubmitting || !ButtonValidation}
               >
@@ -550,14 +550,14 @@ const EstimationCard = () => {
           ) : (
             <div className="flex items-center gap-x-[1rem]">
               <button
-                className="text-white disabled:opacity-[30%]  text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full"
+                className="text-white disabled:opacity-[30%]  text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full  leading-[1.125rem]"
                 onClick={handleSubmit}
                 disabled={isSubmitting || !ButtonValidation}
               >
                 {t("request_consultation_ext")}
               </button>
               <button
-                className="bg-white px-[1.5rem] py-[1rem] border-[0.125rem] border-primary text-[1rem] font-bold text-primary rounded-full"
+                className="bg-white px-[1.5rem] py-[1rem] border-[0.125rem] border-primary text-[1rem] font-bold text-primary rounded-full leading-[1.125rem]"
                 onClick={() => setShowAllQuestions(true)}
               >
                 {t("next")}
