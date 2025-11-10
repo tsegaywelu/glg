@@ -105,14 +105,14 @@ const QR = () => {
         ),
         radial-gradient(circle at 50% 50%, transparent 0.125rem, #ffffff 0.1875rem)
       `,
-            // backgroundSize: "1rem 100%, 0.625rem 0.375rem",
+            backgroundSize: "1rem 100%, 0.625rem 0.375rem",
             backgroundPosition: "0 0, 0.125rem 0.375rem",
             backgroundRepeat: "repeat-x, repeat-x",
           }}
         />
       </div>
     </div>
-  );
+  ); 
 };
 
 export default QR;

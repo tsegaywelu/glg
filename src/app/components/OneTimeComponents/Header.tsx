@@ -29,7 +29,28 @@ export default function Header() {
       document.body.classList.remove("no-scroll");
     };
   }, [isMenuOpen]);
-  const paramsString = searchParams?.toString();
+
+  const [paramsString, setParamsString] = useState(searchParams.toString());
+
+useEffect(() => {
+  const handleParamsChange = () => {
+    setParamsString(window.location.search.substring(1));
+  };
+
+
+  window.addEventListener("params-changed", handleParamsChange);
+
+
+  handleParamsChange();
+
+  return () => {
+    window.removeEventListener("params-changed", handleParamsChange);
+  };
+}, []);
+
+
+  // Now paramsString will update correctly
+
   const navItems = [
     { name: t("outsourcing"), href: paramsString ? `/?${paramsString}` : "/" },
     {
@@ -44,12 +65,22 @@ export default function Header() {
     },
   ];
 
+const isActive = (href: string) => {
+  const hrefWithoutParams = href.split("?")[0];
+  const currentPathWithoutParams = pathName.split("?")[0];
+
+  if (hrefWithoutParams === "/") return currentPathWithoutParams === "/";
+  return currentPathWithoutParams.startsWith(hrefWithoutParams);
+};
   return (
     <div className="w-full">
       <div className=" text-white font-semibold font-pretendard  py-[1.81rem]">
         {/* main header */}
         <div className="w-full  mx-auto flex  items-center justify-between  ">
-          <Link href="/" className="flex items-center  cursor-pointer ">
+          <Link
+            href={`/?${paramsString}`}
+            className="flex items-center  cursor-pointer "
+          >
             <Image
               src="/images/tempLogo.png"
               alt="Logo"
@@ -71,9 +102,9 @@ export default function Header() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={` ${
-                      item.href === pathName ? "text-primary" : "text-white"
-                    } hover:text-[#FF7B00] transition-colors text-[1.25rem] font-semibold`}
+                    className={`${
+                      isActive(item.href) ? "text-primary" : "text-white"
+                    }  hover:text-[#FF7B00] transition-colors text-[1.25rem] font-semibold`}
                   >
                     {item.name}
                   </a>
@@ -81,9 +112,9 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={` ${
-                      item.href === pathName ? "text-primary" : "text-white"
-                    } hover:text-[#FF7B00] transition-colors text-[1.25rem] font-semibold`}
+                    className={`${
+                      isActive(item.href) ? "text-primary" : "text-white"
+                    }  hover:text-[#FF7B00] transition-colors text-[1.25rem] font-semibold`}
                   >
                     {item.name}
                   </Link>
@@ -125,7 +156,7 @@ export default function Header() {
               </div>
             </nav>
             <Link
-              href="/estimation"
+              href={`/estimation?${paramsString}`}
               className={`px-[1.5rem] py-[0.75rem] border-[0.125rem] border-[#FF7B00]  leading-[1.125rem]
             whitespace-nowrap text-[1rem] 
             font-bold rounded-full  hover:text-primary
@@ -179,7 +210,7 @@ export default function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={` ${
-                    item.href === pathName ? "text-primary" : "text-white"
+                    pathName.includes(item.href) ? "text-primary" : "text-white"
                   } text-[20px] hover:text-primary transition-colors`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -190,7 +221,7 @@ export default function Header() {
                   key={index}
                   href={item.href}
                   className={` ${
-                    item.href === pathName ? "text-primary" : "text-white"
+                    pathName.includes(item.href) ? "text-primary" : "text-white"
                   } text-[20px] hover:text-primary transition-colors`}
                   onClick={() => setIsMenuOpen(false)}
                 >

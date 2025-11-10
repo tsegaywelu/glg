@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import "@ckeditor/ckeditor5-theme-lark/theme/index.css";
 import type { Metadata } from "next";
 import { nexonFont, pretendardFont } from "./fonts";

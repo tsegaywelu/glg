@@ -61,6 +61,34 @@ const EstimationCard = () => {
   });
 
   useEffect(() => {
+    const params = new URLSearchParams();
+
+    // Add development types
+    if (formData.developmentType.homepage) params.append("type", "homepage");
+    if (formData.developmentType.mobileApp) params.append("type", "mobileApp");
+    if (formData.developmentType.webService)
+      params.append("type", "webService");
+
+    // Add development status
+    if (formData.developmentStatus.newDevelopment) {
+      params.set("status", "new");
+    } else if (formData.developmentStatus.maintenance) {
+      params.set("status", "maint");
+    }
+
+    // Add budget
+    if (formData.budget) {
+      params.set("budget", formData.budget);
+    }
+
+    // Update URL without page reload
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+
+    // Dispatch custom event to notify Header component
+    window.dispatchEvent(new Event("params-changed"));
+  }, [formData.developmentType, formData.developmentStatus, formData.budget]);
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const types = searchParams.getAll("type");
       const status = searchParams.get("status");

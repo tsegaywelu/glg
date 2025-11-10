@@ -174,6 +174,8 @@ const Question = () => {
       "",
       newUrl
     );
+    window.dispatchEvent(new Event("params-changed"));
+
   }, [formData]);
 
   const appCheck =
@@ -267,7 +269,7 @@ const Question = () => {
             </div>
           </div>
           <button
-            className="  text-white text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full leading-[1.125rem]"
+            className="  text-white text-[1rem] font-bold bg-primary py-[1rem] px-[1.5rem] rounded-full leading-[1.125rem] cursor-pointer"
             onClick={handleNavigation}
             // disabled={!ButtonValidation}
           >
