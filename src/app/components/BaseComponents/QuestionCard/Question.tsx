@@ -245,7 +245,7 @@ const Question = () => {
                 />
               </div>
             </div>
-            <div className="space-y-[2rem] ">
+            <div className="space-y-[2rem]  ">
               <GiveMeQuestion
                 QuestionNmeber="Q3"
                 QuestionText={t("budget_range")}

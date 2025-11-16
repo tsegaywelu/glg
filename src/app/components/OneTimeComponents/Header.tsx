@@ -210,8 +210,8 @@ const isActive = (href: string) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={` ${
-                    pathName.includes(item.href) ? "text-primary" : "text-white"
-                  } text-[20px] hover:text-primary transition-colors`}
+                    isActive(item.href) ? "text-primary" : "text-white"
+                  } text-[1.25rem] hover:text-primary transition-colors`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -221,8 +221,8 @@ const isActive = (href: string) => {
                   key={index}
                   href={item.href}
                   className={` ${
-                    pathName.includes(item.href) ? "text-primary" : "text-white"
-                  } text-[20px] hover:text-primary transition-colors`}
+                    isActive(item.href) ? "text-primary" : "text-white"
+                  } text-[1.25rem] hover:text-primary transition-colors`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -231,14 +231,14 @@ const isActive = (href: string) => {
             )}
           </nav>
 
-          <div className=" bg-white w-[70px] h-[40px] rounded-full flex gap-x-[4px] px-[7.5px] py-[6.5px]  cursor-pointer">
+          <div className=" bg-white w-[4.375rem] h-[2.5rem] rounded-full flex gap-x-[0.25rem] px-[0.5rem] py-[0.4rem]  cursor-pointer">
             <button>
               <Image
                 src="/images/Rotate.png"
                 alt="rotate"
                 width={24}
                 height={24}
-                className={`w-[24px] h-[24px] cursor-pointer transform transition-transform duration-300 ease-in-out ${
+                className={`w-[1.5rem] h-[1.5rem] cursor-pointer transform transition-transform duration-300 ease-in-out ${
                   currentLang === "KR" ? "rotate-180" : ""
                 }`}
                 quality={80}
@@ -255,7 +255,7 @@ const isActive = (href: string) => {
                 alt="Translate"
                 width={28}
                 height={28}
-                className="w-[28px] h-[28px] cursor-pointer"
+                className="w-[1.75rem] h-[1.75rem] cursor-pointer"
                 quality={80}
                 // placeholder="blur"
               />
@@ -266,7 +266,7 @@ const isActive = (href: string) => {
             <span>{t("inquire")}</span>
           </div> */}
         <div
-          className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem]  text-center"
+          className="bg-[#FF7B00] py-[0.75rem] mx-auto text-[0.875rem]  text-center leading-[1rem]"
           dangerouslySetInnerHTML={{ __html: t("inquire") }}
         />
       </div>
